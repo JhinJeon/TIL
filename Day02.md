@@ -1,8 +1,9 @@
 # Git 활용 심화
 
 ## 1. README
-- 파일 명을 README.md로 설정하면 저장소 메인 화면에 README 항목이 출력됨
 
+- 파일 명을 README.md로 설정하면 저장소 메인 화면에 README 항목이 출력됨
+---
 ## 2. .gitignore
 
 - 파일 명 앞에 .을 붙이면 숨김 파일 처리(.gitignore)
@@ -13,5 +14,11 @@
 ---
 ### .gitignore 할 파일이 많을 때
 [링크](https://www.toptal.com/developers/gitignore/) 참고
+---
+## 3. Clone
 
-## 3.Clone & Pull
+- Clone : 원격 저장소 내용을 로컬 저장소에 다운로드
+---
+## 4. Pull
+
+- Pull : 연결된 저장소에 변경 사항을 업데이트
