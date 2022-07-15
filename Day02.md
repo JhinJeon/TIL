@@ -12,8 +12,8 @@
 
 ### `유의사항 : .gitignore 파일을 먼저 생성한 후 파일 이름을 적어서 저장해야 정상적으로 버전 관리가 무시됨`
 ---
-### .gitignore 할 파일이 많을 때
-[링크](https://www.toptal.com/developers/gitignore/) 참고
+### .gitignore 할 파일이 많을 때:
+- [링크](https://www.toptal.com/developers/gitignore/) 참고
 ---
 ## 3. Clone
 
