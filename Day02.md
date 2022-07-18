@@ -65,3 +65,13 @@
 
 - 내 Github 저장소 메인 화면에 랜딩 페이지(프로필) 표시 가능
 - 내 이름과 동일한 저장소를 만들면 자동으로 프로파일 등록
+
+## 8. 파이썬 챗봇
+
+- 랜덤 함수 불러오기(import random) 필요
+- 리스트 값 중 무작위 값 반환 : random.choice(리스트명)
+- 리스트 값 중 여러 개를 뽑고 싶을 때 : random.sample(리스트명, 뽑을 값 개수)
+
+`#pip install requests`
+`#pip install beautifulsoup4`
+`#pip install lxml`
