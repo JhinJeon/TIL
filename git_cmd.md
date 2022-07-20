@@ -12,7 +12,7 @@ git init
 git status
 
 # Working Directory -> Staging Area
-git add [File]
+git add [Filename]
 git add .  # 모든 파일 add
 
 # Staging Area -> Commits
