@@ -64,6 +64,7 @@ print(*my_list,sep='\n')
     noroo = ['노','루','약','해','요']
     print(''.join(noroo))
     ```
+    - 단, 이 방법은 리스트의 값 형식이 *문자(str)인 경우에만* 사용 가능
 
 4. print()구문 안에 sep='' 넣기
 - 예)
