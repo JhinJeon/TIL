@@ -2,4 +2,9 @@
 
 하루에 하나씩 배운 것을 올리는 곳입니다.
 
-- python, git에 대한 정보를 빠르게 얻으려면 Quickdraw 폴더 안의 자료들을 참조하세요.
+- 폴더 설명
+  - Algorithm : 알고리즘 관련 내용
+  - Python : 파이썬 원리 및 기본 사용법 관련 내용
+  - Quickdraw : 평소에 자주 참고하는 내용들
+  - Github : github 조작 관련 내용
+  - Monthly_Project(날짜) : (날짜)에 진행한 월말 프로젝트 진행사항

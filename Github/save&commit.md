@@ -1,10 +1,8 @@
-## Git 활용 심화
-
-### README
+## README
 
 - 파일 명을 README.md로 설정하면 저장소 메인 화면에 README 항목이 출력됨
 
-### .gitignore
+## .gitignore
 
 - 파일 명 앞에 .을 붙이면 숨김 파일 처리(.gitignore)
 - .gitignore에 파일명을 적어서 저장하면 해당 파일은 버전관리가 되지 않음
@@ -13,7 +11,7 @@
 > `유의사항 : .gitignore 파일을 먼저 생성한 후 파일 이름을 적어서 저장해야 정상적으로 버전 관리가 무시됨`
 - gitignore 할 파일이 많을 때는 [링크](https://www.toptal.com/developers/gitignore/) 참고
 
-### Clone
+## Clone
 
 - Clone : 원격 저장소 내용을 로컬 저장소에 다운로드
 - Git Clone의 기능
@@ -29,16 +27,24 @@
 - `나는 add&push만 하면 됨`
 
 ---
-### Pull
+## Pull
 
-- Pull : 연결된 저장소에 변경 사항을 업데이트
+- Pull : 로컬 저장소의 commits을 원격 저장소에 반영
 - git push (원격 저장소) (로컬 저장소)
+
+` git push origin master `
+
 - 원격 저장소에 새로운 내용이 업데이트 된 경우, 다른 저장소에서 업데이트 내역을 pull 할 수 있음
 
-### Git Pull의 비정상적인 흐름?
+> git push -u origin master  # -u 옵션을 했다면 이후 push할 때는 git > push만으로도 가능
+
+
+## 원격 저장소 관리 시 주의사항
 
 - 먼저 다른 저장소에서 변경 내역을 불러온 후(pull), 내가 변경한 내용을 push해야 함
+
 - pull을 하지 않고 push를 하는 경우 branch가 갈려서 에러가 발생할 수 있음
+
 - 이 때는 원격 저장소에서 pull을 먼저 해볼 것 : 변경 사항 두 가지 중에 하나를 선택하거나, 둘 다 선택할 수 있음
 
     - 위 과정은 버전을 새로 만드는 것으로 간주됨 : 제 3의 변경사항도 지정 가능
@@ -48,33 +54,13 @@
   - 여러 가지 버전들을 합쳐야 함(merge)
   - 이후 merge된 내용들을 push  
 
-### Github에서 저장소 불러오기
+## Github에서 저장소 불러오기
 
 - 불러오고 싶은 장소에 우클릭 -> Git Bash here
 - 이후 터미널 명령 창에 git clone (저장소 링크) 입력
 `이미 git을 실행한 상태여서 별도로 git init을 수행할 필요 없음`
 
-### Merge
+## Merge
 
 - 공유되지 않은 두 변경 사항 간 충돌(conflict)이 발생하는 경우 이를 merge할 필요가 있음
 - merge는 새로운 버전으로 간주됨
-
-### Github Pages
-
-- 나만의 페이지 만들기
-- html 코드 기반 프로그램
-
-### Github Profiles
-
-- 내 이름과 동일한 저장소를 만들면 자동으로 프로파일 등록
-- 내 Github 저장소 메인 화면에 랜딩 페이지(프로필) 표시 가능
-
-## 파이썬 챗봇
-
-> 랜덤 함수 불러오기(import random) 필요
-- 리스트 값 중 무작위 값 반환 : random.choice(리스트명)
-- 리스트 값 중 여러 개를 뽑고 싶을 때 : random.sample(리스트명, 뽑을 값 개수)
-
-`#pip install requests`
-`#pip install beautifulsoup4`
-`#pip install lxml`

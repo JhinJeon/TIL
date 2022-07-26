@@ -83,35 +83,26 @@ print(keyword.kwlist)
 ## string format
 
 1. 기본 방법
+
    ```python
    '{} 는 {} 다.'.format('a','b')
    ```
+
 2. f string(f'')
-   ```python
-   f'Hello {name}!, 성적은{score}'
+
+```python
+f'Hello {name}!, 성적은{score}'
+```
 - f string이 기본 방법보다 실행 속도가 빠르고 작성하기 편리함
 
-## Datetime
-
-- 오늘 날짜를 불러올 때 datetime 라이브러리 활용
-    ```python
-    import datetime
-    today = datetime.datetime.now()
-    ```
-- 연/월/일 값을 사용할 때는 today:%y, today:%m, today:%d 활용
-    ```python
-    import datetime
-    today = datetime.datetime.now()
-    print(f'오늘은 {today:%y}-{today:%m}-{today:%d}')
-    ```
 ## 논리 연산자
 
 - and : 둘 다 True이면 True 반환
 - or : 둘 다 False이면 False 반환
     - 숫자끼리 or로 비교했을 때는 더 큰 수가 나옴
 
-`논리 연산자의 우선순위 : not-and-or순으로 우선순위가 높음
-`
+- 논리 연산자의 우선순위 : not-and-or순으로 우선순위가 높음
+
 
 ## 자료의 타입
 1. None : 값이 없음을 나타내기 위해 사용, 함수에서 '없음'이라는 값을 반환하기 위해서도 사용
