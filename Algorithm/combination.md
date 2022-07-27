@@ -12,3 +12,5 @@ for chicken in combinations(len(store),m):
         maximum = distance  #최단 거리 대체
 print(maximum)
 ```
+
+관련 문제 : <https://www.acmicpc.net/problem/15686>
