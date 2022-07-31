@@ -1,3 +1,15 @@
+# 0. 기본
+
+## print(end=)
+
+- end의 기본 값은 줄 바꿈 ('\n')
+- end= 입력 시 print되는 값 맨 뒤에 입력한 값이 출력됨
+
+## print(sep=)
+
+- sep의 기본 값은 공백(' ')
+- sep= 입력 시 콤마로 구분된 print 값 사이에 입력한 값이 출력됨
+
 # 1. 문자열을 붙여서 출력하려면
 
 1. 숫자(정수, 실수 등) 포맷의 값을 str()로 이용해 문자열로 바꾼 후 +로 붙이기
@@ -60,4 +72,22 @@ print('\n'.join('SSAFY IS THE BEST'.split()))
 
 ```python
 print(*my_list,sep='\n')
+```
+
+## 리스트의 인덱스와 값을 같이 뽑기
+
+- 1.range(클래식)
+
+```python
+a = ['a','b','c','d','e','f','u']
+for i in range(a):
+    print(i,a[i])
+```
+
+- 2.enumerate
+
+```python
+a = ['a','b','c','d','e','f','u']
+for idx,val in enumerate(a):
+    print(idx,val)
 ```
