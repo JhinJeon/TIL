@@ -147,7 +147,7 @@ month_dict = {
     }
 ```
 
-## 새로운 딕셔너리 만들기
+# 새로운 딕셔너리 만들기
 
 ### Type A
 
@@ -215,3 +215,49 @@ def day_and_month(old_month_dict_list):
         day_month_dict_list.append({months[i]: days[i]})
     return day_month_dict_list  # 결과 반환
 ```
+
+# 마지막 문자가 숫자인지 확인하는 방법
+
+## 1. 리스트 만들기
+
+```python
+def check_str(chrs):
+    num_list = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    if chrs.get('id')[-1] in num_list:  # 마지막 문자가 숫자(0~9)인지 확인
+        return True
+    else:
+        return False
+```
+
+## 2. isdigit() 활용
+
+```python
+def check_str(user_data):
+    if chrs.get('id')[-1].isdigit():    # 숫자형으로 변환 가능한 경우 True 반환
+        return True # 모든 문자열이 숫자인 경우 True 반환
+    else:
+        return False
+```
+
+## 응용 : 문자열 중에 숫자가 하나 이상 있는지 확인하는 함수
+
+```python
+def check_validation(id_input): # 유효한 id인지(id에 숫자가 1개 이상 들어가 있는지) 확인하는 함수
+    for digit in id_input:  # id를 구성하는 문자열에서 문자를 하나씩 반환
+        if digit.isdigit(): # 만약 숫자가 발견되는 경우 즉시 유효성 통과(True)
+            return True
+            break
+    else:   # 숫자가 전혀 발견되지 않으면 무효(False)
+        return False
+```
+
+## 추가 : isdecimal(), isdigit(), isnumeric()
+
+- 공통 : 숫자로 변환 가능한 문자열인지 확인해 주는 함수
+
+- isdecimal(chr) : chr가 int()로 변환 가능한지 확인
+
+- isdigit(chr): chr가 숫자처럼 생겼는지 확인 (지수 및 특수기호 포함)
+> isdigit()에서 True가 반환되는 경우 : ⑦, 2² 등
+
+- isnumeric(chr) : chr가 숫자값을 표현하는지 확인(제곱근, 분수 특수문자 등)
