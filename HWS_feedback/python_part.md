@@ -1,35 +1,6 @@
-## map(function,iterable)
+## homework & Workshop 어려웠던 부분
 
-- 모든 iterable 값에 적용 가능
-- iterable에 문자열을 넣을 경우 문자 인덱스 단위로(철자 단위로) 나눔
-- 문자열 또는 숫자열에 공백이 있는 경우 iterable.split()으로 공백 제거
-
-- 사용자 지정 함수에도 사용 가능
-```python
-def minus_two(x):
-  return x- 2
-print(list(map(minus_two,[5,6]))) # 결과 : [3, 4]
-```
-
-
-
-## lambda
-
-- 익명 함수
-- 간단한 함수를 표현할 때 사용
-
-```python
-minus_two = list(map(lambda x: x-2,[5,6]))
-print(minus_two)  # 결과 : [3, 4]
-```
-
-
-
-
-
-## homework 어려웠던 부분
-
-### 2. 가변 인자 리스트
+### 1. 가변 인자 리스트
 
 - 가변 인자 입력 시 쉼표 단위로 입력받아도 알아서 잘 처리해 준다.
   (개떡같이 입력해도 찰떡같이 처리함)
@@ -46,9 +17,7 @@ def my_avg(*n):
 print(my_avg(77, 83, 95, 80, 70))
 ```
 
-## workshop 어려웠던 부분
-
-### 2. List의 합 구하기
+## 2. List의 합 구하기
 
 - sum을 안 쓰고 리스트 합계 구하는 방법
 
@@ -62,7 +31,7 @@ def list_sum(list_sample, answer=0):
 print(list_sum([1, 2, 3, 4, 5]))
 ```
 
-### 3. Dictionary로 이루어진 List의 합 구하기
+## 3. Dictionary로 이루어진 List의 합 구하기
 
 - sum을 안 쓰고 리스트의 딕셔너리 값 합계 구하는 방법
 
@@ -75,7 +44,7 @@ def dict_list_sum(dict_sample, answer=0):
     return answer
 ```
 
-### 4. 2차원 List의 전체 합 구하기
+## 4. 2차원 List의 전체 합 구하기
 
 - sum 안 쓰고 2차원 리스트의 합계 구하기
 
@@ -89,7 +58,7 @@ def all_list_sum(sample_list, answer=0):
             answer += int(i)    
     return answer
 ```
-# 기본 인자값
+## 기본 인자값
 
 - 함수를 선언할 때 Argumnet에 기본 값을 설정해 줄 수 있음
 
@@ -106,19 +75,7 @@ def greeting(name='peter', age):
   return f'{name}은 {age}살입니다.'
 ```
 
-## 부록 : 동등성과 동일성
-
-- 동일성 : is로 평가, 저장된 값의 주소가 동일한지 확인
-- 동등성 : ==로 평가, 반환되는 값이 일치한지 확인
-
-```python
-0 == False : True
-1 == True : True
-0 is False : False
-1 is True : False
-```
-
-### 변수가 리스트로 주어졌을 때
+## 변수가 리스트로 주어졌을 때
 
 ```python
 numbers = [1, 1, 3, 3, 0, 1, 1]

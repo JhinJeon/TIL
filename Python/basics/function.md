@@ -138,3 +138,12 @@ add(2)
 
 > 가변 인자와 가변 키워드 인자는 함께 사용 가능
 
+## lambda
+
+- 익명 함수
+- 간단한 함수를 표현할 때 사용
+
+```python
+minus_two = list(map(lambda x: x-2,[5,6]))
+print(minus_two)  # 결과 : [3, 4]
+```

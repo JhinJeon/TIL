@@ -27,30 +27,36 @@ def dict_list_sum(infos):
     return age_sum
 ```
 
- ## 이차원 배열 응용
+## 딕셔너리 연습 2
+
+
+### .get()으로 없는 키를 찾을 때도 에러가 나지 않도록 설정
 
 ```python
-matrix = [
-   [1,2,3,4],
-   [5,6,7,8,],
-   [9,10,11,12]
-]
+my_dict = {'민트': '초코',
+           '피자': '파인애플'}
 
-print(max(map(max,matrix)))    # max 대신 sum, min 등도 가능
+print(my_dict.get('탕수육', '없는데요?'))
+# 결과 : 없는데요?
 ```
 
-- 위의 방식으로도 쓸 수 있지만 아래 방식으로 써야 가독성이 좋음
-    - 위 코드는 map()의 원리를 이해하는 용도로 받아들일 것
+### .update()로 딕셔너리 값 수정
+
+- Type A
 
 ```python
-matrix = [
-    [1,2,3,4],
-    [5,6,7,8,],
-    [9,10,11,12]
-]
-max_value = -1000000
-for i in range(3):
-    for j in range(4):
-        if matrix[i][j] > max_value:
-            max_value = matrix[i][j]
-print(max_value)
+my_dict = {'민트': '초코',
+           '피자': '파인애플'}
+my_dict.update(민트='만먹음', 피자='파인애플안넣어')
+print(my_dict)
+# 결과 : {'민트': '만먹음', '피자': '파인애플안넣어'}
+```
+
+- Type B
+
+```python
+my_dict = {'민트': '초코',
+           '피자': '파인애플'}
+my_dict.update({'민트': '만먹음', '피자': '파인애플안넣어'})
+print(my_dict)
+```
