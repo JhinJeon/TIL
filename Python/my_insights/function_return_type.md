@@ -84,3 +84,4 @@ Python2에서는 .values() 메서드로 반환받은 값의 타입은 리스트�
 
 <https://www.programiz.com/python-programming/methods/dictionary/values>
 <https://bluese05.tistory.com/67>
+<https://johnlekberg.com/blog/2020-09-19-dict-view.html>
