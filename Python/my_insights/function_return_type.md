@@ -26,13 +26,14 @@ def dec_movies(movies):
     for val in movie_dict[profit].values():
         return val
 ```
-### 궁금했던 사항
+## 궁금했던 사항
 - 위 코드에서 그냥 movie_dict[profit].values()를 반환하면 dic_values() 형식으로 반환되는데 for 구문에 iterable로 넣으면 그런 거 없이 출력되는 이유가 뭘까?
 
-### 의문 해결
+## 의문 해결
 - 형식의 문제이기 때문에 type() 함수로 반환되는 값의 형식을 체크해보기로 했다.
-- 내가 원하는 출력 형태는 정수 또는 리스트이므로, 이런 형태로 표시해 줄 수 있는 map() 함수와 타입을 비교해보기로 했다.
-- 아래 solution 시리즈 함수들은 .values()가 어떤 특징을 가지고 있는지 비교하기 위해 만들어 본 함수이다.
+- 내가 원하는 출력 형태는 정수 또는 리스트이므로, 이하 이런 형태로 표시해 줄 수 있는 map() 함수와 타입을 비교해보기로 했다.
+
+ 아래 solution 시리즈 함수들은 .values()가 어떤 특징을 가지고 있는지 비교하기 위해 만들어 본 함수이다.
 
 ```python
 sample_dict = {'A': 1, 'B': 2, 'C': 3}
@@ -49,16 +50,16 @@ def solution3(dictionary):
 
 print(solution1(sample_dict))   #dit_values
 print(solution2(sample_dict))   #map object
-print(solution3(sample_dict))   # ㅔ1,2,3[]
+print(solution3(sample_dict))   # [1,2,3]
 
 ```
 
-(map을 사용할 경우 맵핑된 값을 사람이 인식할 수 있는 형태로 출력하려면 sum() 함수로 합계를 구하면 된다.)
 
-- 위 코드를 실행하면서 의문이 들었던 게 .values() 메서드가 리스트 형태로 값을 반환한다면 왜 list()를 씌우는 3번 함수는 이중 리스트로 나오지 않는다는 점이었다.
-- 이에 대해서 구글링 하던 중 다음과 같은 글을 발견할 수 있었다.
+ 위 코드를 실행하면서 의문이 들었던 게 .values() 메서드가 리스트 형태로 값을 반환한다면 왜 3번 함수는 반환값이 이중 리스트로 나오지 않느냐는 것이었다.
 
-> The view object values doesn't itself return a list of sales item values but it returns *a view of all values* of the dictionary.
+ 이에 대해서 구글링 하던 중 다음과 같은 글을 발견할 수 있었다.
+
+> The view object values doesn't itself return a list of sales item values but it returns **a view of all values** of the dictionary.
 
 ## a view of all values??
 
