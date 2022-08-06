@@ -98,6 +98,7 @@
 ## 인라인(inline)
 
 - 인라인의 기본 넓이는 콘텐츠 영역만큼
+- 인라인은 텍스트 취급
 
 margin-right: auto; 오른쪽 자동 정렬
 margin-left: auto; 왼쪽 자동 정렬
