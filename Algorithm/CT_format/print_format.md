@@ -37,7 +37,24 @@
     ```python
     print('서울','대전','대구','부산',sep='')
     ```
+5. 정수 값이 담긴 리스트를 출력하는 경우
+- 예)
+    ```python
+    t = int(input())
 
+    li = [2, 3, 5, 7, 11]
+
+    for tc in range(1, t + 1):
+        n = int(input())
+        answer = [0] * 5
+        for i in range(5):
+            while n % li[i] == 0:
+                answer[i] += 1
+                n //= li[i]
+
+        print(f'#{tc}', end=' ')
+        print(*answer)
+    ```
 ---
 ## 문자열을 줄울 바꿔서 출력하려면
 1. print() 안에 sep = '\n' 넣기
