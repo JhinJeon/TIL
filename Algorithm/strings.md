@@ -5,15 +5,15 @@
 - 서로 정보 처리(코드 해석)를 다르게 한다는 문제가 발생
 - 비트(bit)를 기준으로 인코딩 표준안 제정
 - 아스키코드 : 인코딩 표준안의 일종
-  - 아스키코드는 8진수로 표현
+  - 아스키코드는 8진수(8비트)로 표현
 - 유니코드 : 다국어 처리를 위한 인코딩 표준안
-  - 유니코드는 16진수로 표현
+  - 기본값은 UTF-8(8비트)
 - 다른 인코딩 방식으로 처리하려면 코드 맨 첫 줄에 인코딩 방식을 서술하면 됨
-  - 기본값은 UTF-8 
 
 ## 문자열의 처리
 
 - 문자열은 시퀀스 자료형으로 분류됨
+- container > sequence > immutable > iterable 순
 - replace(), split(), ord(), chr(), isalpha() 등
 - 문자열을 split()을 쓰지 않고 list()에 편입하면 개별 문자가 리스트의 원소가 됨
 
@@ -22,8 +22,18 @@
 1. 반복문 사용
 
 - 반복문 range를 거꾸로(n,-1,-1) 돌려서 새로운 문자열에 추가
+
+```python
+string = 'Hello Algorithm'
+reversed_string = ''
+
+for i in range(len(string) - 1, -1, -1):  # 맨 뒤에서부터 시작하여 처음까지
+    reversed_string += string[i]
+
+print(reversed_string)
+```
   
-2. reverse 사용
+1. reverse 사용
 
 - 문자열을 리스트로 만든 후 (리스트명).reverse() 사용
 
