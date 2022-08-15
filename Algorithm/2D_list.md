@@ -8,7 +8,9 @@
 - 실행 순서:
 
  1 2 3 4
+
  8 7 6 5
+
 9 10 11 12
 
 
@@ -111,9 +113,9 @@ for tc in range(1, t+1):
     for i in range(n):
         if numbers[i] == 1:
             cnt += 1
-        else:
             if max_value < cnt:
                 max_value = cnt
+        else:
             cnt = 0
     print(f'#{tc} {max_value}')
 ```
