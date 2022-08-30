@@ -53,3 +53,20 @@
 
 - Django 설치하기 : $ pip install django==(버전명)
 - 가상 환경 패키지 목록 조회 : $ pip list
+
+## requirements.txt 생성(환경설정 백업)
+
+- pip freeze > requirements.txt
+
+## 백업한 목록 설치하기
+
+- pip install -r requirements.txt
+
+## Django 프로젝트 생성
+
+- django-admin startproject firstproject .
+
+## Django 서버 실행
+
+- python manage.py runserver
+- 코드 실행 후 출력되는 URL로 접속 가능
