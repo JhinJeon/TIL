@@ -23,8 +23,24 @@ def throw(request):
 def catch(request):
     # print(request)
     # print(type(request))
-    # print(request.GET.get('message'))
+    #print(request.GET)
+    department = request.GET.get('department')
+    name = request.GET.get('name')
+
+    if department == '대전 2반' or department == '대전2반':
+        message = "교육생이시군요"
+    else:
+        message = "다른 반이시군요"
+
     context = {
-        'message' : request.GET.get('message'),
+        'message' : message,
     }
+
     return render(request, 'catch.html', context)
+
+def show(request, name):
+    context = {
+        'name' : name
+    }
+
+    return render(request, 'show.html', context)

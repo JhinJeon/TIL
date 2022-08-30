@@ -117,3 +117,15 @@ TEMPLATES = [
 
 - throw에서 받은 데이터를 처리하는 방식
 - request.GET.get((받은 데이터의 변수명))으로 표시
+
+## Django URLs
+
+- 웹 애플리케이션은 URL을 통한 클라이언트의 요청에서부터 시작함
+- Django는 URL 끝에 /(Trailing slash)가 없으면 자동으로 붙여주는 게 기본 설정
+  - 웹 프로그래밍 단계에서 경로의 맨 끝이여도 Trailing slash를 붙여주는 게 좋음
+
+## Variable routing
+
+- 템플릿의 많은 부분이 중복되고 일부만 변경되는 상황인 경우 기본 템플릿을 최대한 재사용하는 게 좋음
+- 매 사용자마다 정적인 html 파일을 만드는 것보다 사용자의 요청에 따라 URL을 변경할 수 있도록 동적으로 설계하는 것이 좋음
+- urls.py에서 path() 선언 후 views에 show 함수 정의
