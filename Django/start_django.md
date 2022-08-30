@@ -70,3 +70,10 @@
 
 - python manage.py runserver
 - 코드 실행 후 출력되는 URL로 접속 가능
+
+## Django 애플리케이션 생성
+
+- python manage.py startapp articles
+- 이후 프로젝트 폴더의 settings.py의 INSTALLED_APPS 리스트에 추가
+  - 사용자 지정 애플리케이션을 리스트에 추가할 때 맨 앞 부분에 추가하는 것을 권장
+  - 반드시 애플리케이션 생성 후 등록해야 함
