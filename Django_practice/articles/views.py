@@ -1,3 +1,4 @@
+from os import name
 from django.shortcuts import render
 
 # Create your views here.
@@ -20,4 +21,10 @@ def throw(request):
     return render(request, 'throw.html')
 
 def catch(request):
-    return render(request, 'catch.html')
+    # print(request)
+    # print(type(request))
+    # print(request.GET.get('message'))
+    context = {
+        'message' : request.GET.get('message'),
+    }
+    return render(request, 'catch.html', context)

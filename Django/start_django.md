@@ -108,6 +108,12 @@ TEMPLATES = [
   - name = 서버에서 전송받은 데이터를 어떤 변수명으로 취급할지 설정
   - type="submit" = 제출 버튼
 
+## catch
+
+- throw에서 전송한 데이터를 받는 형식
+- get에서 return하는 값을 출력할 수 있음
+
 ## get
 
-- 
+- throw에서 받은 데이터를 처리하는 방식
+- request.GET.get((받은 데이터의 변수명))으로 표시
