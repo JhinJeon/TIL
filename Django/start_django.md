@@ -77,3 +77,37 @@
 - 이후 프로젝트 폴더의 settings.py의 INSTALLED_APPS 리스트에 추가
   - 사용자 지정 애플리케이션을 리스트에 추가할 때 맨 앞 부분에 추가하는 것을 권장
   - 반드시 애플리케이션 생성 후 등록해야 함
+
+
+## Django Template Language(DTL)
+
+- Django 템플릿에서 사용하는 built-in template system
+- 조건, 반복, 변수, 치환, 필터 등의 기능 제공
+  - 필터 설정 : {{context 원본|필터 조건}}
+
+## 메인 페이지 설정하기
+
+- 프로젝트 > settings.py의 TEMPLATES의 'DIRS' : []에 __BASE_DIR / 'templates',__ 입력
+
+```html
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates',],
+        'APP_DIRS': True,
+...중략
+```
+
+## throw
+
+- 클라이언트가 서버에 데이터 정보를 전송하는 형식
+- throw의 form은 action과 method로 구성됨
+  - action = 서버의 어느 위치에 데이터를 보낼지
+  - method = 어떤 방식으로 데이터를 전송할지
+  - type = 전송하는 데이터의 유형
+  - name = 서버에서 전송받은 데이터를 어떤 변수명으로 취급할지 설정
+  - type="submit" = 제출 버튼
+
+## get
+
+- 
