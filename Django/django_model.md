@@ -19,13 +19,28 @@
 
 -  스키마(schema) : 데이터베이스에서 자료의 구조, 표현 방법, 관계 등을 정의한 구조(structure)
 
-## CharField
+## 데이터 타입 설정
 
-- 데이터의 유효성 검사
-- 입력하는 데이터의 길이를 제한해야 함(필수 인자)
-    - max_length=
+- 새로운 값을 입력받을 때 입력받는 데이터의 유형을 정의해야 함
+- models 함수에 기본적으로 내장되어 있음
+- 데이터 필드의 스키마 구성
+- CharField
+  - 데이터의 유효성 검사
+  - 길이에 제한이 있는 문자열
+    - 필수 인자 max_length= 포함
     
 - TextField : 글자 수가 많을 때 사용, 실제 저장될 때는 유효성을 검증하지 않음
+
+## migration
+
+- 데이터베이스에 모델의 변경 사항을 반영하는 방법
+- 모델의 변경사항과 데이터베이스를 동기화
+- 마이그레이트 실행 : python manage.py sqlmigrate (애플리케이션명) (마이그레이션 이름)
+ex) python manage.py sqlmigrate articles 0001
+  
+## 모델 변경사항 반영하기
+
+- python manage.py makemigrations
 
 ## ORM(Object-Relational-Mapping)
 
