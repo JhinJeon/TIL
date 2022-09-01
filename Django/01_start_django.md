@@ -34,10 +34,11 @@
     - model = 원본 데이터, view = 표시 형식, controller = 연결 방식
   - MTV : Model - Template - View
   - MVC의 view, controller는 MTV의 template, view
+- 위 패턴은 HTTP 구조 내에서 작동
 
 ## MTV 디자인 패턴
 
-- model : 데이터 관련 로직을 관리(데이터 구조 정의, 데이터베이스 기록 관리)
+- model : 데이터 관련 로직을 관리(데이터 구조 정의, 데이터베이스 기록 관리) - 설계도 제작
 - template : 레이아웃과 화면 처리, UI 구조 관리
 - view : model과 template 관련 로직을 처리해서 응답 반환, 클라이언트 요청에 대해 처리를 분기하는 역할
 

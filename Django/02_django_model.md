@@ -46,6 +46,7 @@ ex) python manage.py sqlmigrate articles 0001
 
 - 객체 지향 매핑
 - DB를 연동할 때 호환되지 않는 데이터를 자동으로 변환하는 프로그래밍 기법
+- 모델(설계도)와 view를 오가는 과정
 - Django는 자체 내장 ORM 사용
 - SQL을 사용하지 않고 데이터를 조작할 수 있게 만드는 매개체
 
@@ -67,32 +68,36 @@ ex) python manage.py sqlmigrate articles 0001
 
 - 업로드 시각은 UTC를 기준으로 기록됨 : 한국 시간으로 표시하려면 별도로 번역 과정 필요
 
-## .save()
+### .save()
 
 - DB에 데이터가 저장되기 전까지 입력된 데이터의 id는 None
 
-## all()
+### all()
 
 - QuerySet return
 - 전체 데이터 조회
 - 반복 가능 개체(for, if 등으로 응용 가능)
 
-## get()
+### get()
 
 - 단일 데이터 조회
 - 조회할 값이 단 하나인 경우에만 사용해야 함(값을 찾을 수 없는 경우에도 오류)
 - 고유성(uniqueness)을 보장하는 조회에서 주로 사용
 
-## filter()
+### filter()
 
 - 지정된 조회 매개 변수와 일치하는 객체를 포함한 새 Queryset 반환
 - 필터 결과가 하나여도 단일 쿼리셋으로 반환
 
-## field lookup
+### field lookup
 
 - 찾고자 하는 레코드의 조건 설정
 - 필터(filter, exclude, get 등)의 인자로 사용
 
+
+# CRUD
+
+- 소프트웨어가 가지는 기본적인 기능 4가지(Create, Read, Update, Delete)를 묶어서 일컫는 말
 ## 수정(update)
 
 - **수정 전에 먼저 수정할 대상을 조회해서 가져와야 함**
