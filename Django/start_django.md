@@ -41,17 +41,18 @@
 - template : 레이아웃과 화면 처리, UI 구조 관리
 - view : model과 template 관련 로직을 처리해서 응답 반환, 클라이언트 요청에 대해 처리를 분기하는 역할
 
-## Django 환경 설정
+# Django 환경 설정
 
 - SSAFY 8기 공식 문서 참조
 - 가상환경 만들기 : $ python -m venv (가상환경 이름)
   - 가상환경 이름은 주로 venv로 설정함
   
-- 가상환경 활성화 : source (가상환경 이름)/Scripts/activate
-  - 가상환경이 활성화된 동안 cmd에 (venv)가 표시됨
-- 가상환경 비활성화 : # deactivate
+## 가상환경 활성화 : source (가상환경 이름)/Scripts/activate
+- 가상환경이 활성화된 동안 cmd에 (venv)가 표시됨
 
-- Django 설치하기 : $ pip install django==(버전명)
+## 가상환경 비활성화 : # deactivate
+
+## Django 설치하기 : $ pip install django==(버전명)
 - 가상 환경 패키지 목록 조회 : $ pip list
 
 ## requirements.txt 생성(환경설정 백업)
