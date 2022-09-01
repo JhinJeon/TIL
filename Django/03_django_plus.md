@@ -1,8 +1,29 @@
-## 기본 설정 보충
+# 기본 설정 보충
 
-settings.py의 TEMPLATES 설정 : 'DIRS'에 설정하는 경로는 어느 폴더에서 html 파일을 찾을지 설정
 
-프로젝트에 include 선언 + 개별 앱에 앱 이름 선언하기 : 확장성을 고려한 프로그래밍
+## settings.py의 TEMPLATES 설정
+
+-'DIRS'에 설정하는 경로는 어느 폴더에서 html 파일을 찾을지 설정
+
+```python
+# 프로젝트 디렉토리의 settings.py
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'], # 기본(최상위) 디렉토리의 templates 폴더
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+## 프로젝트에 include 선언 + 개별 앱에 앱 이름 선언하기 : 확장성을 고려한 프로그래밍
 
 ```python
 # 프로젝트의 urls.py
