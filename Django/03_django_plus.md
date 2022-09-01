@@ -317,7 +317,23 @@ def update(request, pk):
 ```
 - edit.html에서 작성한 정보를 서버에 전송 - update 인스턴스를 호출하여 정보 처리 - 수정된 내용 반영
 
-## 각 앱의 함수를 다른 이름으로 불러오기
+## 기본 관리자 페이지(Admin site)
 
-1. 파이썬 스타일 : 라이브러리 불러올 때 import ~ as ~
-2. 장고 스타일 : 
+- 서버 관리자가 활용하는 페이지
+- 모델 class를 admin.py에 등록하고 관리
+- 레코드 생성 여부 확인에 용이, 직접 레코드 삽입 가능
+
+### 관리자의 모델 관리
+
+- 데이터베이스 직접 편집 가능
+- GUI 기반의 관리자용 페이지 제공
+
+```python
+# 개별 앱의 admin.py
+from django.contrib import admin
+from .models import Article
+
+# Register your models here.
+
+admin.site.register(Article)
+```
