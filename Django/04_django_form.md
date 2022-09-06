@@ -93,3 +93,37 @@ def create(request):
 - modelform과 form은 각자의 역할이 다른 것
     - form은 DB와 무관한 데이터를 받아서 처리할 때(로그인, 인증 등)
     - modelform은 DB와 유관한(저장할) 데이터를 받아서 처리할 때(글쓰기, 기록 등)
+  
+## 데코레이터(decorator)
+
+- 기존에 작성한 함수를 수정하지 않고 새로운 기능을 추가해 주는 함수
+- Django 자체적으로 내장 데코레이터 함수 지원
+- 데코레이터를 사용하면 악의적인 접근을 차단하고 웹 서비스가 개발자가 의도한 방식대로 동작하도록 유도할 수 있음
+
+### require_safe()
+
+- require_get도 있지만 Django에서는 require_safe() 사용 권장
+
+```python
+@require_safe
+def index(request):
+    # DB에 전체 데이터를 조회
+    articles = Article.objects.all()
+    context = {
+        'articles': articles,
+    }
+    return render(request, 'articles/index.html', context)
+```
+
+## 인증 시스템(authentication)
+
+- 신원 확인(사용자가 자신이 누구인지 확인하는 체계)
+- Authorization(권한, 허가): 권한 부여, 인증된 사용자의 권한 범위 결정
+
+## 사용자 지정(custom user) 모델
+
+- Django는 사용자 지정 모델 사용을 강력하게 권장(highly recommended)
+- 사용자 지정 모델은 기본 모델과 동일하게 작동하며, 필요 시 맞춤 설정 가능
+- 사용자 지정 모델 대체 작업은 첫 migrate를 실행하기전에 마쳐야 함
+  - migration이 실행된 후 시도하는 경우 기존의 테이블 간 관계를 망가뜨릴 수 있음
+  - makemigrations -> custom usermodel -> migrate 순으로 실행
