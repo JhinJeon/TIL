@@ -1,6 +1,6 @@
 # Django 폼
 
-[img]https://github.com/JhinJeon/TIL/issues/1#issue-1363525986
+![image](https://user-images.githubusercontent.com/96213999/188685595-94a7c043-54ec-4c6d-881f-696c8dca183d.png)
 
 요약
 - [폼 적용 코드](#폼-적용-코드)
