@@ -23,3 +23,73 @@ class ArticleForm(forms, Form):
 ```
 
 - form은 model field와 달리 TextField가 없음
+
+## views.py 내에 new 함수에 새로운 코드 추가
+
+```python
+from .forms import ArticleForm
+
+def new(request):
+    form = ArticleForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/new.html', context)
+```
+
+```html
+# new.html
+# form 뒤에 .as_p를 붙이면 개별 항목마다 줄바꿈 제공
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>NEW</h1>
+  <form action="{% url 'articles:create' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %} <label for="title">Title: </label>
+    <input type="text" name="title" id="title"><br>
+    <label for="content">Content: </label>
+    <textarea name="content" id="content"></textarea> <br> {% endcomment %}
+    <input type="submit">
+  </form>
+  <hr>
+  <a href="{% url 'articles:index' %}">뒤로가기</a>
+{% endblock content %}
+```
+
+- 텍스트 입력 필드 만들기 : forms.py에서 CharField를 정의할 때 widget=forms.TextField 입력
+
+```html
+# forms.py의 클래스 항목
+
+content = forms.CharField(widget=forms.Textarea)
+```
+
+## 메타데이터
+
+- 데이터를 표현하기 위한 데이터
+    - 사진 데이터의 촬영 시각, 사용 렌즈, 촬영 위치 등은 사진의 메타데이터
+    
+## 폼 적용 코드
+
+```python
+# views.py 파일
+def create(request):
+    form = ArticleForm(request.POST)    # update의 경우 instance=article 추가
+    if form.is_valid():
+        article = form.save()
+        return redirect('articles:detail', article.pk)
+    # return redirect('articles:new')
+    context = {
+        'form': form,
+    }
+    return render(request, 'articles/new.html', context)
+```
+
+## form과 modelform
+
+- modelform과 form은 각자의 역할이 다른 것
+    - form은 DB와 무관한 데이터를 받아서 처리할 때(로그인, 인증 등)
+    - modelform은 DB와 유관한(저장할) 데이터를 받아서 처리할 때(글쓰기, 기록 등)
