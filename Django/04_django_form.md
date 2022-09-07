@@ -121,36 +121,3 @@ def index(request):
     return render(request, 'articles/index.html', context)
 ```
 
-## 인증 시스템(authentication)
-
-- Authentication(인증)
-  - 사용자가 자신이 누구인지 확인하는 체계
-  - 신원 확인
-
-- Authorization(권한, 허가)
-  - 사용자에게 권한 부여
-  - 인증된 사용자의 작업 수행 범위 결정
-
-- 보통 Authentication과 Authorization을 합쳐서 Authentication System(인증 시스템)이라고 부른다.
-- 관련 경로, 키워드, 변수명 등은 accounts로 저장하는 것을 권장
-
-## 사용자 지정(custom user) 모델
-
-- Django는 사용자 지정 모델 사용을 강력하게 권장(highly recommended)
-- 사용자 지정 모델은 기본 모델과 동일하게 작동하며, 필요 시 맞춤 설정 가능
-
-```python
-from django.contrib.auth.models import AbstractUser
-
-class User(AbstractUser):
-    pass
-```
-- 사용자 지정 모델 대체 작업은 첫 migrate를 실행하기전에 마쳐야 함
-  - migration이 실행된 후 시도하는 경우 기존의 테이블 간 관계를 망가뜨릴 수 있음
-  - makemigrations -> custom usermodel -> migrate 순으로 실행
-  
-> Q : 만약 프로젝트 도중에 변경해야 하는 경우라면?
-> 
-> A : 데이터베이스를 초기화한 뒤 진행할 수 있다.
->
->  초기화 과정 : migrations 파일 삭제 -> db.sqlite3 삭제 -> migration 진행

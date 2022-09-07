@@ -6,6 +6,7 @@
 [쿠키](#쿠키)
 [세션](#세션)
 [자동 로그아웃](#쿠키의-수명)
+[회원가입](#회원가입)
 
 ## 1. 인증이란?
 - Authentication(인증)
@@ -114,3 +115,52 @@ AUTH_USER_MODEL = 'accounts.user'
 ## 로그아웃
 
 - 로그아웃은 세션을 삭제하는 과정
+
+```python
+from django.contrib.auth import logout as auth_logout
+
+def logout(requests):
+    auth_logout(requests)
+    return redirect('articles:index')
+```
+
+## 회원가입
+
+- user를 생성하는 과정
+- built-in form인 UserCreationForm 사용
+
+### UserCreationForm
+
+- username, password, Password2 필드로 구성
+
+## 커스텀 폼
+
+- django에서는 사용자 지정 모델을 직접 참조하는 것을 권장하지 않음
+
+```python
+# forms.py
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
+class CustomUserCreationForm(UserCreationForm):
+    model = get_user_model()
+
+# views.py
+from .forms import CustomUserCreationForm
+```
+
+## 회원탈퇴
+
+```python
+def delete(request):
+    auth_logout(request.user)
+    request.user.delete()
+    return redirect('articles:index')
+```
+
+## 회원탈퇴 기능 구현 시 주의사항
+
+- 회원탈퇴는 로그인 상태에서 진행할 수 있도록 해야 함
+- 사용자 정보를 지워도 세션 정보(로그인 인증)는 없어지지 않음
+- 회원탈퇴를 하면서 로그아웃을 같이 구현하려면 **로그아웃 후 회원탈퇴**
+  - 반대로 하면 로그아웃 시도 시 입력할 개체가 없는 문제 발생
