@@ -1,7 +1,5 @@
 # Django 폼
 
-![image](https://user-images.githubusercontent.com/96213999/188685595-94a7c043-54ec-4c6d-881f-696c8dca183d.png)
-
 요약
 - [폼 적용 코드](#폼-적용-코드)
 - [인증 시스템](#인증-시스템authentication)
