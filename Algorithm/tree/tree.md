@@ -19,6 +19,7 @@
   - [삽입 연산](#삽입-연산)
 - [힙(Heap)](#힙heap)
   - [최대 힙과 최소 힙](#최대-힙과-최소-힙)
+  - [heapq 라이브러리](#heapq-라이브러리)
 
 
 ## 트리의 정의
@@ -136,3 +137,22 @@
 - 키 값이 가장 작은 노드를 찾기 위한 이진 트리
 - 부모 노드의 키 값 < 자식 노드의 키 값
 - 루트 노드의 값은 트리에서 가장 작음
+
+## heapq 라이브러리
+
+- 힙의 푸시와 팝(pop) 기능 지원
+- 푸시는 heappush(푸시할 리스트, 값) 입력
+- 팝은 heappop(힙 리스트) 입력
+- heapq는 기본적으로 최소힙을 기준으로 생성
+
+```python
+from heapq import heappush, heappop
+
+heap = []
+heappush(heap, 2)
+heappush(heap, 3)
+# ...
+
+while heap:
+  print(heappop(heap))
+```
