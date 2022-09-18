@@ -16,12 +16,16 @@
 - 데이터에 대한 HTML forms 생성
 - 클라이언트로부터 수신한 데이터 처리
 
+## 유효성 검사
+
+- 유효하지 않은 데이터를 입력받는 경우 자체적으로 에러 사유 저장
+- 에러 메시지를 사용자에게 출력하려면 HTML 방식으로 작성
+
 ## forms 클래스 선언
 
 ```python
 # 개별 앱 디렉토리 내부에 forms.py 생성
 from django import forms
-
 
 class ArticleForm(forms, Form):
     title = forms.CharField(max_length=10)
