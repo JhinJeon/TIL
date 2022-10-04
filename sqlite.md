@@ -30,6 +30,15 @@
   - [ORDER BY](#order-by)
   - [Filtering Data](#filtering-data)
     - [SELECT DISTINCT](#select-distinct)
+    - [논리 연산자(WHERE)](#논리-연산자where)
+    - [와일드 카드(wild card)](#와일드-카드wild-card)
+    - [BETWEEN](#between)
+    - [LIMIT](#limit)
+    - [GROUP BY](#group-by)
+  - [Change Data](#change-data)
+    - [INSERT](#insert)
+    - [UPDATE](#update)
+    - [DELETE](#delete)
 
 # 데이터베이스
 
@@ -336,4 +345,127 @@ SELECT first_name, age, balance FROM users ORDER BY age ASC, balance DESC;
 - 지역 값 중 중복되는 값을 제거한 후 오름차순(가나다순)으로 정렬
 ```
 SELECT DISTINCT country from users ORDER BY country;
+```
+
+### 논리 연산자(WHERE)
+
+- 일부 표현식의 TRUE 여부를 판단할 때 사용
+- 1, 0, Null 중 하나 반환
+- WHERE 뒤에 AND, ANY, ALL, BETWEEN, LIKE, IN, NOT, OR 등을 붙여서 사용
+
+```
+SELECT first_name, age, balance FROM users WHERE age >= 30 and balance > 500000;
+```
+
+### 와일드 카드(wild card)
+
+- 파일을 지정할 때 구체적인 이름 대신 여러 파일을 동시에 지정할 목적으로 사용
+- 특정 패턴의 문자열을 찾거나, 긴 이름을 생략할 때 사용
+- *(asterisk), ?, % 등
+- SQL에서는 Like와 함께 사용
+
+- 이름에 '호'가 들어가는 사람 조회하기
+```
+SELECT first_name, last_name FROM users WHERE first_name LIKE '%호%';
+```
+
+- 나이가 20대인 사람 조회
+  - 언더바(_)로 표시하면 언더바 자리에 아무 문자 1개가 들어오는 데이터만 조회 가능
+```
+SELECT first_name, age FROM users WHERE age LIKE '2_';
+```
+
+- 경기도 or 강원도 사람만 조회하기
+
+```
+SELECT first_name, country FROM users WHERE country= '경기도' or country='강원도';
+SELECT first_name, country FROM users WHERE country IN ('경기도', '강원도');
+
+```
+
+### BETWEEN
+
+- 값이 선택한 범위 내에 있는지 조회하는 용도
+- 앞에 NOT을 붙여 조건을 반전할 수 있음
+
+- 20대~30대인 사람 조회
+```
+SELECT first_name, age FROM users WHERE age BETWEEN 20 and 30;
+SELECT first_name, age FROM users WHERE age >= 20 and age < 30;
+```
+
+### LIMIT
+
+- 상위/하위 n개 항목 조회할 때 사용
+
+- 최연소 5명 조회
+```
+SELECT first_name, age FROM users ORDER BY age ASC LIMIT 5;
+```
+
+- 11번째로 어린 사람~20번째로 어린 사람 조회
+
+```
+SELECT first_name, age FROM users ORDER BY age LIMIT 10 OFFSET 10;
+```
+
+### GROUP BY
+
+- 각 항목별로 그룹화 가능
+
+- 각 지역별로 몇 명씩 등록되어 있는지 조회
+  - COUNT(*)는 개수 집계 결과를 반환하는 SQL에서 지원하는 함수
+```
+SELECT country, COUNT(*) FROM users GROUP BY country;
+```
+
+- 개수 집계 결과 행 이름을 member_count로 표시하기
+
+```
+SELECT country, COUNT(*) as member_count FROM users GROUP BY country;
+```
+
+## Change Data
+
+- 데이터 삽입, 수정, 삭제 기능 지원
+
+### INSERT
+
+- 단일 행 삽입
+1. 
+  - INSERT INTO table_name(column1, column2, column3)
+  - VALUES(value1, value2, value3);
+
+2. 
+   
+   - INSERT INTO table_name
+   - VALUES(value1, value2, value3);
+
+- 2번 방법의 경우 VALUES()를 여러 줄 작성하면 한 번에 여러 행 삽입 가능
+
+### UPDATE
+
+- UPDATE 테이블명 SET column명 = 수정할 값 WHERE 검색 조건
+- 검색 조건에 해당하는 모든 row들의 column에 저장된 데이터 수정
+```
+UPDATE table_name
+SET column1=value1
+    column1=value2
+WHERE rowid=2;
+```
+
+### DELETE
+
+- 어느 테이블에서 삭제할지, 어떤 검색 조건에 해당하는 값을 삭제할지 결정
+- 검색 조건에 해당하는 모든 row들 삭제
+
+```
+DELETE FROM table_name
+WHERE search_condition
+```
+
+- 아무 조건을 설정하지 않으면 테이블 전체를 삭제
+
+```
+DELETE FROM table_name
 ```
