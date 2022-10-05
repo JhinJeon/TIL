@@ -39,6 +39,7 @@
     - [INSERT](#insert)
     - [UPDATE](#update)
     - [DELETE](#delete)
+- [추가 팁(생각한 점)](#추가-팁생각한-점)
 
 # 데이터베이스
 
@@ -133,7 +134,7 @@ SELECT column_name FROM table_name;
   - SQL은 들여쓰기를 엄격히 지킬 필요는 없음
 
 ```
-CREATE TABLE tale_name(
+CREATE TABLE table_name(
     column1 data_type constraints,
     column2 data_type constraints,
     column3 data_type constraints
@@ -468,4 +469,12 @@ WHERE search_condition
 
 ```
 DELETE FROM table_name
+```
+
+# 추가 팁(생각한 점)
+
+- ORDER BY와 WHERE가 겹칠 때는 WHERE 이후 ORDER BY를 써야 한다.
+
+```
+SELECT room_num FROM hotels WHERE room_num NOT LIKE 'B%' and check_in LIKE '2020-01-04' ORDER BY price; 
 ```
