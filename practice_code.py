@@ -14,7 +14,6 @@ class Person:
 
 
 class Student(Person):
-
     def call_name(self):
         return f'대전 2반 {self.name} 입니다!'
 
