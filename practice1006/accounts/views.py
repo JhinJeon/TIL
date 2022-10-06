@@ -30,11 +30,11 @@ def login(request):
     return render(request, 'accounts/login.html', context)
 
 
-@require_POST
+
 def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
-    return redirect('todo:index')
+    return redirect('accounts:login')
 
 
 @require_http_methods(['GET', 'POST'])

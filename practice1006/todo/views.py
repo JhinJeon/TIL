@@ -9,14 +9,17 @@ from .models import Todo
 from .forms import TodoForm
 from django.shortcuts import render, redirect
 
+
 # Create your views here.
 
 
 @require_safe
 def index(request):
-    todo = Todo.objects.all()
-    context = {'todo': todo}
-    return render(request, 'todo/index.html', context)
+    if request.user.is_authenticated:
+        todo = request.user.todo_set.all()
+        context = {'todo': todo}
+        return render(request, 'todo/index.html', context)
+    return redirect('accounts:login')
 
 
 @login_required
