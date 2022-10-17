@@ -13,6 +13,13 @@
 - [WEB API](#web-api)
 - [REST](#rest)
 - [JSON](#json)
+- [vue](#vue)
+- [serialization](#serialization)
+  - [serializer 설치](#serializer-설치)
+    - [ModelSerializer](#modelserializer)
+    - [api_view decorator](#api_view-decorator)
+- [Django REST Framework - N:1 관계](#django-rest-framework---n1-관계)
+  - [get_list_or_404](#get_list_or_404)
 
 # HTTP
 
@@ -110,3 +117,42 @@
 - JavaScript 표기법을 따른 단순 문자열
 - key-value 형태의 구조를 가지고 있어서 컴퓨터 언어가 갖고 있는 자료구조로 쉽게 전환할 수 있다.
 - 현재 API에서 가장 많이 사용하는 데이터 타입
+
+# vue
+
+- Front-end Framework
+- Django는 model과 view(백엔드) 구성에 사용하고, template(프론트앤드)는 vue로 분리해서 구성할 예정
+
+# serialization
+
+- 데이터 구조나 객체 상태를 동일 혹은 다른 컴퓨터 환경에 저장하고, 나중에 재구성할 수 있는 포맷으로 변환하는 과정
+- 어떠한 언어나 환경에서도 나중에 다시 쉽게 사용할 수 있는 포맷으로 변환하는 과정
+- json이 가장 보편적으로 사용됨
+
+## serializer 설치
+
+- 개별 앱 폴더에 serializers.py 파일 생성
+
+
+### ModelSerializer
+
+- 모델 필드에 해당하는 필드가 있는 Serializer 클래스를 자동으로 생성할 수 있는 shortcut
+- 필드 생성, 유효성 검사, 생성(create) 및 수정(update)의 간단한 기본 기능 구현
+
+- many 옵션
+  - 단일 객체 인스턴스 대신 QuerySet 데이터를 통째로 불러오려면 many=True 옵션을 설정해야 함
+
+### api_view decorator
+
+- DRF view 함수가 응답해야 하는 HTTP 메서드 목록
+- GET 메서드만 허용되며 다른 메서드의 경우 405 Not Allowed 응답
+
+# Django REST Framework - N:1 관계
+
+## get_list_or_404
+
+```python
+from django.shortcuts import get_list_or_404
+
+articles = get_list_or_404(Article)
+```
