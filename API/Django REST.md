@@ -12,6 +12,7 @@
 - [REST API](#rest-api)
 - [WEB API](#web-api)
 - [REST](#rest)
+  - [REST 정리](#rest-정리)
 - [JSON](#json)
 - [vue](#vue)
 - [serialization](#serialization)
@@ -112,6 +113,12 @@
 - API 서버를 개발하기 위한 일종의 SW 설계 방법론
 - 자원을 정의하고 자원에 대한 주소를 지정하는 전반적인 방법 서술
 
+## REST 정리
+
+- 정보의 자원 식별 : URL
+- 정보의 자원 표현 : JSON
+- 자원에 대한 행위 : HTTP Methods
+
 # JSON
 
 - JavaScript 표기법을 따른 단순 문자열
@@ -146,6 +153,12 @@
 
 - DRF view 함수가 응답해야 하는 HTTP 메서드 목록
 - GET 메서드만 허용되며 다른 메서드의 경우 405 Not Allowed 응답
+
+```
+from rest_framework.decorators import api_view
+
+@api_view(['GET','POST','PUT'])
+```
 
 # Django REST Framework - N:1 관계
 
