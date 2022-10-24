@@ -1,0 +1,142 @@
+
+
+
+
+# Browser APIs
+
+- javascript는 프로그램 언어로서의 기능뿐만 아니라 스크립트 언어로서의 기능도 수행한다.
+- Browser API는 웹 브라우저에 내장된 API로, 현재 컴퓨터 환경에 대한 데이터를 제공하거나, 오디오를 재생하는 등 동적이고 복잡한 일을 수행할 수 있도록 한다.
+- javascript를 이용해 Browser API 기능들을 사용할 수 있다.
+
+## Browser API 종류
+
+- DOM
+- Geolocation API(지리 정보)
+- WebGL(그래픽)
+
+# DOM
+
+- 브라우저에서의 javascript
+- 데이터가 주기적으로 갱신되거나, 웹 페이지가 사용자와 상호작용하게 하거나, 애니메이션을 추가하는 등의 행위를 추가할 수 있음
+- 문서를 동적으로 수정하고 사용자의 인터페이스를 실시간으로 업데이트한다.
+
+## DOM의 특징
+
+- 문서를 논리 트리로 표현한다.
+- 프로그램적으로 트리에 접근하여 문서의 구조, 스타일, 콘텐츠를 변경할 수 있다.
+
+
+## window object
+
+- DOM을 표현하는 창
+- 최상위 객체(작성 시 생략 가능)
+
+### window object 명령어
+
+- 새 탭 열기 : window.open()
+- 인쇄 메뉴 열기 : window.print()
+- 경고 모달 출력 : window.alert()
+
+## document object
+
+- 브라우저가 불러온 웹 페이지
+- 페이지 콘텐츠의 진입점 역할을 하며, \<body> 태그와 같은 수많은 다른 요소들을 포함하고 있음
+- 문서 객체의 속성에 javascript 언어로 접근하여 특정 값을 변경할 수 있다.
+
+> #### 파싱(Parsing)
+>
+> - 구문 분석 및 해석
+> - 브라우저가 문자열을 해석하여 DOM Tree로 만드는 과정
+
+## DOM 조작
+
+- DOM을 조작하려면 조작할 사항을 **무엇을 조작할지 선택한 후** 조작 명령을 내려야 함
+
+### 선택 메서드
+
+1. 한개만 선택하는 경우
+
+- document.querySelector(*selector*)
+  - 제공한 *선택자*(괄호 안 값)와 일치하는 원소 한 개 선택
+  - 없다면 null 반환
+  - 여러 개가 있다면 첫 번째 객체 반환
+
+2. 여러 개를 선택하는 경우
+
+- document.querySelectorAll(*selector*)
+
+3. 태그 조건 설정
+
+- 일반적으로 기본 설정한 태그 id를 탐색
+- 앞에 .을 붙이면 태그에 작성한 type id를 찾음
+- \> : 하위 태그 지정
+- 앞에 \#을 붙이면 사용자 지정 id를 찾음
+
+#### NodeList
+
+- 인덱스로만 각 항목 접근 가능
+- 배열의 forEach 메서드 등 다양한 배열 메서드 활용 가능
+- **querySetAll()**에 의해 반환되는 NodeList는 DOM의 변경 사항을 실시간으로 적용하지 않는다.
+
+### 조작 메서드
+
+1. 생성
+
+- document.createElement(*tagName*)
+  - 작성한 *tagName*의 HTML 요소를 생성하여 반환
+
+2. 추가
+
+- Node.appendChild()
+  - 한 Node를 특정 부모 Node의 자식 NodeList 중 마지막 자식으로 삽입
+  - 한 번에 하나의 Node만 추가 가능
+  - 추가된 Node 객체 반환
+  - 주어진 노드가 이미 문서의 다른 Node를 참조 중이라면 현재 위치에서 새로운 위치로 이동
+
+3. 삭제
+
+- Node.removeChild()
+  - DOM에서 자식 노드 제거
+  - 제거된 노드 반환
+
+4. 속성 조회 및 설정
+
+- 조회 : elements.getAttribute(*attributename*)
+
+- 설정 : elements.setAttribute(name, value)
+
+5. 내용 텍스트 채우기
+
+- elements.innerText = *'name'*
+
+## 이벤트 구현
+
+### 이벤트 취소
+
+- event.preventDefault()
+  - 현재 이벤트의 기본 동작을 중단
+  - HTML 요소의 기본 동작을 작동하지 않게 막는다.
+  - 예) a태그의 이벤트를 취소하면 클릭하더라도 URL 이동 기능이 작동하지 않는다.
+  - 복사 방지 기능 구현 등에 사용
+
+# this
+
+- 특정 오브젝트를 가리키는 키워드
+- java의 this와 python의 self는 동일한 대상(자기 자신)
+- 다만 javascript의 this는 java의 this나 python의 self와 약간 다르다.
+- javascript의 this는 함수가 어떻게 호출되었는지에 따라 동적으로 결정된다.
+
+## this INDEX
+
+1. 전역 문맥에서의 this
+   - 브라우저의 전역 개체인 window를 가리킨다(고정).
+2. 함수 문맥에서의 this
+   1. 단순 호출(스스로 호출)
+   - **전역 객체(window, global(Node.js))**
+   2. method(객체의 메서드로서)
+   - 객체의 메서드로 취급되어, 해당 객체가 바인딩된다.
+   3. nested(Function 키워드)
+   - callback 함수(forEach)에서의 this가 메서드 전체를 가리키지 못하고 전역 객체(window)를 가리킨다.(단순 호출 방식으로 사용되었기 때문)
+   - 화살표 함수를 사용하면 위 문제를 해결할 수 있다.
+     - 화살표 함수 내의 this는 자신을 감싼 객체 범위가 된다.
+     - 그래서 자동으로 한 단계 상위 문맥(scope context)를 바인딩한다.
