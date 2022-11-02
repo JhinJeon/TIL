@@ -17,6 +17,7 @@
 - [Basic Syntax](#basic-syntax)
   - [v-show vs v-if](#v-show-vs-v-if)
   - [v-for](#v-for)
+    - [key 이름 설정](#key-이름-설정)
   - [v-on](#v-on)
 - [Vue advanced](#vue-advanced)
   - [computed](#computed)
@@ -202,15 +203,28 @@ myArr2: [
   { id: 3, name: 'vue.js', completed: false },
 ],
 ```
+
+### key 이름 설정
+
+- v-for문에 입력하는 :key값은 vue가 각 순회 항목을 구별할 수 있도록 해 주는 고유한 값이다.
+- v-for="()" 에 (값, 키)쌍을 입력한 경우 :key="값.키"로 설정하는 경우 개별 항목의 key가 인덱스 번호로 부여된다.
+
 > ## Note : 키 이름 선정
-> - :key=의 값으로 v-for에 입력한 키를 다시 사용하는 경우 변수명 충돌로 인한 오류가 발생할 수 있다.
-> - 다만 객체에서는 key 값이 중복될 여지가 없으므로 key 변수명을 다시 사용해도 된다.
+> - :key=의 값으로 v-for에 입력한 '키'를 다시 사용하는 경우 변수명 충돌로 인한 오류가 발생할 수 있다.
+> - 다만 객체에서는 key 값이 중복될 여지가 없으므로 '키' 변수명을 다시 사용해도 된다.
 
 ```html
-<div v-for="(value, key) in myObj" :key="key">
+<!-- 1. :key 값을 "값.키"의 형식으로 설정한 경우 -->
+<div v-for="(value, key) in myObj" :key="value.key">
+  <p>{{ key }} : {{ value }}</p>
+</div>
+
+<!-- 2. :key 값을 "키"로 설정한 경우(이하 myObj의 형태에 따라 사용 가능) -->
+<div v-for="(value, key) in myObj" :key="value.key">
   <p>{{ key }} : {{ value }}</p>
 </div>
 ```
+
 ```js
 myObj: {
     name: 'harry',

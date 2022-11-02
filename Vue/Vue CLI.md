@@ -2,7 +2,7 @@
 
 - [Vue CLI](#vue-cli)
   - [Node.js](#nodejs)
-  - [환경설정](#환경설정)
+- [환경설정](#환경설정)
   - [Babel](#babel)
   - [Webpack](#webpack)
   - [Module](#module)
@@ -25,7 +25,7 @@
 - Node.js는 자바스크립트를 구동할 수 있는 런타임 환경
   - 여러 OS 환경에서 실행 가능
 
-## 환경설정
+# 환경설정
 
 1. 전역 구역(global, windows의 바탕 화면)에 node.js 설치
 
