@@ -31,3 +31,4 @@ const sampleArray = _.sample([1,2,3,4,5],3)
 # CLI 환경에서 Lodash 사용하기
 
 - script 태그를 붙여넣는 대신 CLI에 npm install lodash를 입력해서 설치
+- 이후 lodash를 사용하려는 컴포넌트에 import _ from 'lodash' 입력
