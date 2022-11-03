@@ -27,3 +27,7 @@ const sampleArray = _.sample([1,2,3,4,5],3)
 
 - _.sampleSize(추출 대상, 추출 개수)
 - sample과 유사하지만, 
+
+# CLI 환경에서 Lodash 사용하기
+
+- script 태그를 붙여넣는 대신 CLI에 npm install lodash를 입력해서 설치
