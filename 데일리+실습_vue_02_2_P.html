@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: rgb(38, 38, 38);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #50B8E7;
+    }
+
+    .buttonArea {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .buttonRow {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      height: 80px;
+    }
+
+    .btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 45%;
+      border: 1px solid #50B8E7;
+      cursor: pointer;
+    }
+
+    .selected {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 45%;
+      border: 1px solid #50B8E7;
+      background-color: skyblue;
+      cursor: pointer;
+    }
+
+    .clear {
+      margin-top: 10px;
+      outline: none;
+      background: none;
+      border: 1px solid #50B8E7;
+      width: 100px;
+      height: 50px;
+      cursor: pointer;
+      font-size: large;
+    }
+
+    .clear:hover {
+      background-color: #B9E2F5;
+    }
+
+    .type {
+      font-size: x-large;
+      font-weight: bold;
+    }
+
+    .selected {
+      background-color: #B9E2F5;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <h1>버튼 클릭하기</h1>
+      <section class="buttonArea">
+        <div class="buttonRow">
+          <div class="btn" @click="btn1" id="button1">
+            <span class="type">1</span>
+          </div>
+          <div class="btn" @click="btn2" id="button2">
+            <span class="type">2</span>
+          </div>
+        </div>
+        <div class="buttonRow">
+          <div class="btn" @click="btn3" id="button3">
+            <span class="type">3</span>
+          </div>
+          <div class="btn" @click="btn4" id="button4">
+            <span class="type">4</span>
+          </div>
+        </div>
+      </section>
+      <button class="clear" v-on:click="resetAll">전체 해제</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        btn1Active: false,
+        btn2Active: false,
+        btn3Active: false,
+        btn4Actice: false,
+      },
+      methods: {
+        resetAll: function () {
+          this.btn1Active = false
+          this.btn2Active = false
+          this.btn3Active = false
+          this.btn4Active = false
+          btn1 = document.querySelector('#button1')
+          btn1.className = 'btn'
+          btn2 = document.querySelector('#button2')
+          btn2.className = 'btn'
+          btn3 = document.querySelector('#button3')
+          btn3.className = 'btn'
+          btn4 = document.querySelector('#button4')
+          btn4.className = 'btn'
+        },
+        btn1() {
+          this.btn1Active = !this.btn1Active
+          btn1 = document.querySelector('#button1')
+          if (this.btn1Active) {
+            btn1.className = 'selected'
+          } else {
+            btn1.className = 'btn'
+          }
+        },
+        btn2() {
+          this.btn2Active = !this.btn2Active
+          btn2 = document.querySelector('#button2')
+          if (this.btn2Active) {
+            btn2.className = 'selected'
+          } else {
+            btn2.className = 'btn'
+          }
+        },
+        btn3() {
+          this.btn3Active = !this.btn3Active
+          btn3 = document.querySelector('#button3')
+          if (this.btn3Active) {
+            btn3.className = 'selected'
+          } else {
+            btn3.className = 'btn'
+          }
+        },
+        btn4() {
+          this.btn4Active = !this.btn4Active
+          btn4 = document.querySelector('#button4')
+          if (this.btn4Active) {
+            btn4.className = 'selected'
+          } else {
+            btn4.className = 'btn'
+          }
+        },
+      }
+
+    })
+  </script>
+</body>
+
+</html>
