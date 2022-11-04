@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Movies</h1>
+  <a href="{% url 'movies:create' %}">새 작품 등록</a>
+  <hr>
+  <div class='row'>
+    {% for movie in movies %}
+    <div class="col">
+      <div class="card-sm-4" style="width: 22rem; height:55rem;">
+        <img src="{{ movie.poster_path }}" class="card-img-top" alt="Movie Poster Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">    
+            <p>인기도 : {{ movie.popularity }}</p>
+            <p>평점 : {{ movie.vote_average }}</p>
+            <p>개봉일 : {{ movie.release_date }}</p>
+            <span> 분류 : {% for genre in movie.genres.all %}
+              {{ genre.name }}, 
+              {% endfor %}</span>
+            <hr>
+          </p>
+          <a href="{% url 'movies:detail' movie.pk %}" class="btn btn-primary">더 보기</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+{% endblock %}
