@@ -3,7 +3,7 @@
 - [상태 관리(State Management)](#상태-관리state-management)
   - [Pass Props & Emit Event](#pass-props--emit-event)
   - [중앙 저장소(Centralized Store)](#중앙-저장소centralized-store)
-- [Vuex 구성](#vuex-구성)
+- [Vuex 구성(환경설정)](#vuex-구성환경설정)
   - [Mutations](#mutations)
   - [Getters](#getters)
   - [Action](#action)
@@ -27,7 +27,7 @@
 - 중앙 저장소 데이터가 변경되면 각각의 컴포넌트는 데이터의 변화에 반응한다(변경된 데이터 반영).
 - 대규모의 중첩이 깊은 컴포넌트로 구성된 앱을 관리하기에 용이한 방식이다.
 
-# Vuex 구성
+# Vuex 구성(환경설정)
 
 - vue-cli 생성 이후 터미널에 vue add vuex 입력
 - src/store 폴더가 중앙 저장소
