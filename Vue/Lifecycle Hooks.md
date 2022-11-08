@@ -40,6 +40,9 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState()
   ],
+  state: {
+    todos: []
+  }
 ```
 - createPersistedState 플러그인을 사용하면 dispatch, 로컬스트리지 저장 액션, mutation 등 복잡한 코드를 작성하지 않아도 된다.
 
