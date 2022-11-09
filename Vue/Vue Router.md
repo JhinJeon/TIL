@@ -12,6 +12,14 @@
   - [라우팅이 필요한 이유](#라우팅이-필요한-이유)
 - [Vue Router](#vue-router)
   - [Vue Router 시작하기(코드 작성)](#vue-router-시작하기코드-작성)
+  - [history mode](#history-mode)
+- [router-link](#router-link)
+- [router-view](#router-view)
+- [src/views 폴더](#srcviews-폴더)
+- [v-bind 적용](#v-bind-적용)
+  - [프로그래밍 방식 네비게이션](#프로그래밍-방식-네비게이션)
+- [Dynamic Route Matching](#dynamic-route-matching)
+  - [lazy-loading](#lazy-loading)
 
 
 # UX & UI
@@ -97,3 +105,102 @@
 
 > ## Note : 기존 프로젝트에 router를 추가하는 경우
 > - 기존 프로젝트 진행 중에 router를 추가하면 App.vue를 덮어쓰므로 라우터가 필요한 경우 파일을 백업해 두어야 한다.
+
+- 이후 뜨는 질문창에 y 입력(history mode 사용 여부 포함)
+
+## history mode
+
+- 브라우저의 history API를 활용한 방식
+  - 새로고침 없이 URL 이동 기록을 남길 수 있다.
+  - 우리에게 익숙한 URL 구조로 사용 가능하다.
+
+- history mode 미사용 시 '#'로 표시된다.
+
+# router-link
+
+- a 태그와 비슷하게 url로 이동하는 역할
+- routes 폴더에 등록된 컴포넌트와 매핑된다.
+- 목표 경로는 'to='로 설정
+- HTML에서는 a 태그로 렌더링되지만, 필요에 따라 바뀔 수 있다.
+
+```html
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view/>
+  </div>
+</template>
+```
+
+# router-view
+
+- 주어진 URL에 일치하는 컴포넌트를 렌더링 해 주는 컴포넌트
+- 실제 컴포넌트가 DOM에 부착되어 보이는 자리
+- router-view는 Django의 {block } tag와 유사한 기능 수행
+- App.vue는 base.html의 역할
+
+# src/views 폴더
+
+- router-view에 들어갈 컴포넌트 작성
+- 컴포넌트를 components 폴더와 views 폴더에 나누어 작성해야 한다.
+  - 한 페이지를 구성하는 하위 컴포넌트(라우팅에 연결되지 않은 vue)는 components 폴더 안에 작성
+  - URL 입력 시 표시하는 컴포넌트(라우터에 연결된 vue)는 views 폴더 안에 작성
+
+# v-bind 적용
+
+- 동적인 웹 사이트 주소명을 구현하려면 v-bind를 구현해야 한다.
+- v-bind의 축약자인 ':'을 to 앞에 붙이기
+
+```html
+<template>
+  <div id="app">
+    <nav>
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link>
+    </nav>
+    <router-view />
+  </div>
+</template>
+```
+
+## 프로그래밍 방식 네비게이션
+
+- 다른 URL로 이동할 때 this.$router.push 사용
+- history stack에 기록이 남기 때문에 뒤로 가기 버튼을 이용해 이전 URL로 돌아갈 수 있다.
+
+- 위(router-link 태그)가 선언 방식, 아래(button 태그)가 프로그래밍 방식
+
+```vue
+<template>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <router-link :to="{ name: 'home' }">홈으로!</router-link>
+    <br />
+    <button @click="toHome">홈으로!</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "AboutView",
+  methods: {
+    toHome() {
+      this.$router.push({ name: "home" });
+    },
+  },
+};
+</script>
+```
+
+# Dynamic Route Matching
+
+- URL의 특정 값을 변수처럼 사용할 수 있다.
+
+## lazy-loading
+
+- 잘 사용하지 않는(또는 당장 사용하지 않는) 컴포넌트는 처음부터 불러올 필요는 없다.
+- 특정 라우트에 방문할 때 필요한 컴포넌트를 별도로 불러오는 방식
+- 최초 불러오는 시간(initialize)이 빨라지는 효과가 있다.
