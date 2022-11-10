@@ -20,6 +20,12 @@
   - [프로그래밍 방식 네비게이션](#프로그래밍-방식-네비게이션)
 - [Dynamic Route Matching](#dynamic-route-matching)
   - [lazy-loading](#lazy-loading)
+- [Navigation Guard](#navigation-guard)
+  - [Navigation Guard의 종류](#navigation-guard의-종류)
+  - [Global Before Guard(전역 가드)](#global-before-guard전역-가드)
+  - [beforeEnter() -라우터 가드](#beforeenter--라우터-가드)
+    - [params 변화 감지](#params-변화-감지)
+- [404 Not Found](#404-not-found)
 
 
 # UX & UI
@@ -204,3 +210,64 @@ export default {
 - 잘 사용하지 않는(또는 당장 사용하지 않는) 컴포넌트는 처음부터 불러올 필요는 없다.
 - 특정 라우트에 방문할 때 필요한 컴포넌트를 별도로 불러오는 방식
 - 최초 불러오는 시간(initialize)이 빨라지는 효과가 있다.
+
+# Navigation Guard
+
+- Vue router를 통해 특정 URL에 접근할 때 다른 URL로 리다이렉트하거나 접근 자체를 막는 수단
+- 사용자 인증 정보가 없는 경우 등 접근을 차단해야 하는 경우 유용하다.
+
+## Navigation Guard의 종류
+
+- 전역 가드 : 애플리케이션 전역에서 동작
+- 라우터 가드 : 특정 URL에서 동작
+- 컴포넌트 가드 : 라우터 컴포넌트에서 정의
+
+## Global Before Guard(전역 가드)
+
+- **다른 URL로 이동할 때** 항상 실행
+- router/index.js에서 router.beforeEach()를 이용해 설정
+- 콜백 함수는 to, from, next 인자를 받는다.
+  - to : 이동할 URL의 정보
+  - from : 현재 URL의 정보
+  - next : 지정한 URL로 이동하기 위해 호출하는 함수
+    - 반드시 한 번만 호출되어야 하며, 기본적으로 to에 작성한 URL로 이동한다.
+
+```js
+// index.js 맨 아래쪽
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+// beforeEach() 함수 추가
+router.beforeEach((to, from, next) => {
+  console.log('to', to)
+  console.log('from', from)
+  console.log('next', next)
+  next()  // next() 함수를 호출하지 않으면 화면이 넘어가지 않는다.
+})
+
+export default router
+```
+
+> ## Note : 전역 가드 작동 원리
+> - 기본적으로 기본 페이지(to)로 이동하지만 이동이 불가능한 경우 대체 페이지(조건문으로 표시된 페이지)로 이동
+
+## beforeEnter() -라우터 가드
+
+- route에 진입 시 실행됨
+- 콜백 함수는 to, from, next를 인자로 받는다.
+- 라우터를 등록한 위치에 추가
+- 단, 다른 경로에서 탐색할 때만 실행된다.
+
+### params 변화 감지
+
+- 변화하지 않는 이유 : 컴포넌트가 재사용되었기 때문
+- 기존 컴포넌트를 지우고 새로운 컴포넌트를 만드는 대신 재사용하는 것이 효율적이다.
+- beforeRouteUpdate()를 이용해 처리
+
+# 404 Not Found
+
+- 형식은 유효하지만 특정 리소스를 찾을 수 없는 경우
+  - 예를 들어 1번 게시물을 요청했는데 1번 게시물이 삭제된 경우
