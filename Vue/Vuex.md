@@ -43,6 +43,9 @@
 
 - component에서 dispatch() 메서드에 의해 호출된다.
 
+> ## Note : store의 state를 mutations를 통해 변경해야 하는 이유
+>- state를 변경할 때 mutations를 이용하면 개발자는 데이터의 변화 과정과 결과를 쉽게 파악할 수 있고, Vuex에도 기록(로그)이 남기 때문에 디버깅 등의 상황에서도 유용하기 때문이다.
+
 ## Getters
 
 - state를 활용하여 계산된 새로운 변수 값
