@@ -12,15 +12,16 @@
 - [REST API](#rest-api)
 - [WEB API](#web-api)
 - [REST](#rest)
+- [REST URL 권장사항](#rest-url-권장사항)
   - [REST 정리](#rest-정리)
 - [JSON](#json)
 - [vue](#vue)
 - [serialization](#serialization)
   - [serializer 설치](#serializer-설치)
     - [ModelSerializer](#modelserializer)
-    - [api_view decorator](#api_view-decorator)
+    - [api\_view decorator](#api_view-decorator)
 - [Django REST Framework - N:1 관계](#django-rest-framework---n1-관계)
-  - [get_list_or_404](#get_list_or_404)
+  - [get\_list\_or\_404](#get_list_or_404)
 
 # HTTP
 
@@ -112,6 +113,12 @@
 - Representational State Transfer
 - API 서버를 개발하기 위한 일종의 SW 설계 방법론
 - 자원을 정의하고 자원에 대한 주소를 지정하는 전반적인 방법 서술
+
+# REST URL 권장사항
+
+1. 불필요한 의미의 주소명을 최소화하여 간결하게 작성할 것
+2. 요청 사항(HTTP methods)을 URL에 표시하지 말 것(자원 표현과 자원에 대한 행위를 분리할 것)
+3. URL 구성 양식은 조직마다 다르다(국룰은 없다)
 
 ## REST 정리
 
