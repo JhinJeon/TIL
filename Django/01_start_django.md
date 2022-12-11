@@ -1,3 +1,30 @@
+🔔목차🔔
+
+- [Django 시작하기](#django-시작하기)
+  - [Framework 이해하기](#framework-이해하기)
+  - [클라이언트 - 서버 구조](#클라이언트---서버-구조)
+  - [동적 웹 페이지](#동적-웹-페이지)
+  - [디자인 패턴](#디자인-패턴)
+  - [Django의 장점](#django의-장점)
+  - [Django의 디자인 패턴 :  MTV 패턴](#django의-디자인-패턴---mtv-패턴)
+- [Django 환경 설정](#django-환경-설정)
+  - [가상환경 설정](#가상환경-설정)
+  - [Django 환경 설정 명령어](#django-환경-설정-명령어)
+  - [프로젝트 생성](#프로젝트-생성)
+  - [개별 앱 생성](#개별-앱-생성)
+  - [Django 서버 실행](#django-서버-실행)
+  - [Django Template Language(DTL)](#django-template-languagedtl)
+  - [메인 페이지 설정하기](#메인-페이지-설정하기)
+  - [throw](#throw)
+  - [catch](#catch)
+- [서버에 보내는 요청 메서드(method)](#서버에-보내는-요청-메서드method)
+  - [get](#get)
+  - [post](#post)
+  - [put](#put)
+  - [delete](#delete)
+- [Django URLs](#django-urls)
+  - [Variable routing](#variable-routing)
+
 # Django 시작하기
 
 ## Framework 이해하기
@@ -28,7 +55,7 @@
 
 - Flask 대비 자유도는 낮은 대신 유용한 기능들이 많음
 - 검증된 웹 프레임워크 : 안정적으로 사용 가능
-- 
+  
 ## Django의 디자인 패턴 :  MTV 패턴
 
 - MTV 패턴 : MVC 디자인 패턴에서 변형된 형태
@@ -52,9 +79,10 @@
 
 - 가상환경 비활성화 : # deactivate
 
-## Django 환경 설정 
+## Django 환경 설정 명령어
 - Django 설치
   - pip install django==(버전명)
+  - ==버전명은 생략 가능(생략 시 최신 버전 설치)
 
 - 가상 환경 패키지 목록 조회
   - $ pip list
@@ -115,16 +143,36 @@ TEMPLATES = [
 - throw에서 전송한 데이터를 받는 형식
 - get에서 return하는 값을 출력할 수 있음
 
+# 서버에 보내는 요청 메서드(method)
+
 ## get
 
 - throw에서 받은 데이터를 처리하는 방식
 - request.GET.get((받은 데이터의 변수명))으로 표시
 
-## Django URLs
+## post
+
+- 백엔드 서버에 데이터를 전송할 때 사용
+- 풀 스택 프로세스를 Django 내부에서 처리하는 경우 기본적으로 CSRF 토큰 인증을 요구한다.
+
+## put
+
+- DB에 저장된 데이터를 수정할 때 사용
+- POST로도 구현할 수 있지만 PUT으로 구현하는 것이 더 깔끔하다.
+  - POST로 구현하려 하는 경우 수정된 데이터가 기존 데이터에 덮어쓰지 않고 새로 추가되는 오류가 발생할 수 있음
+- **수정할 데이터**와 **수정할 내용**을 지정해 주어야 한다.
+
+## delete
+
+- POST로 삭제 요청을 보낼 수도 있지만, DELETE 요청으로 보내는 것도 가능하다.
+- **삭제할 데이터**를 지정해 주어야 한다.
+
+
+# Django URLs
 
 - 웹 애플리케이션은 URL을 통한 클라이언트의 요청에서부터 시작함
 - Django는 URL 끝에 /(Trailing slash)가 없으면 자동으로 붙여주는 게 기본 설정
-  - 웹 프로그래밍 단계에서 경로의 맨 끝이여도 Trailing slash를 붙여주는 게 좋음
+  - 웹 프로그래밍 단계에서 경로의 맨 끝이여도 Trailing slash를 붙여주는 게 좋다.
 
 ## Variable routing
 
