@@ -1,3 +1,28 @@
+🔔목차🔔
+
+- [용어 정의](#용어-정의)
+  - [이름 공간(namespace)](#이름-공간namespace)
+  - [모델](#모델)
+  - [쿼리(query)](#쿼리query)
+  - [매핑(mapping)](#매핑mapping)
+  - [스키마(schema)](#스키마schema)
+- [데이터 타입 설정](#데이터-타입-설정)
+- [migration](#migration)
+  - [ORM(Object-Relational-Mapping)](#ormobject-relational-mapping)
+  - [ORM의 장단점](#orm의-장단점)
+  - [Queryset](#queryset)
+  - [DB 저장 시 주의사항](#db-저장-시-주의사항)
+    - [.save()](#save)
+    - [all()](#all)
+    - [get()](#get)
+    - [filter()](#filter)
+    - [field lookup](#field-lookup)
+- [CRUD](#crud)
+  - [수정(update)](#수정update)
+  - [삭제(delete)](#삭제delete)
+
+# 용어 정의
+
 ## 이름 공간(namespace)
 
 - 개체를 구분할 수 있는 범위
@@ -12,35 +37,41 @@
     
 - 테이블의 데이터는 레코드에 저장됨
 
-- 쿼리(query): 데이터를 조회하기 위한 명령어
-    - 쿼리를 날린다 == DB를 조작한다
+## 쿼리(query)
+
+-데이터를 조회하기 위한 명령어
+- 쿼리를 날린다 == DB를 조작한다
     
-- 매핑(mapping) : 하나의 값을 다른 값으로 대응시키는 것
+## 매핑(mapping) 
 
--  스키마(schema) : 데이터베이스에서 자료의 구조, 표현 방법, 관계 등을 정의한 구조(structure)
+-하나의 값을 다른 값으로 대응시키는 행위
 
-## 데이터 타입 설정
+## 스키마(schema)
 
-- 새로운 값을 입력받을 때 입력받는 데이터의 유형을 정의해야 함
+- 데이터베이스에서 자료의 구조, 표현 방법, 관계 등을 정의한 구조(structure)
+
+
+# 데이터 타입 설정
+
+- 새로운 값을 입력받을 때 입력받는 데이터의 유형을 정의해야 한다.
 - models 함수에 기본적으로 내장되어 있음
-- 데이터 필드의 스키마 구성
-- CharField
-  - 데이터의 유효성 검사
-  - 길이에 제한이 있는 문자열
-    - 필수 인자 max_length= 포함
-    
-- TextField : 글자 수가 많을 때 사용, 실제 저장될 때는 유효성을 검증하지 않음
+- Django의 model은 데이터 필드의 스키마를 구성하고, 데이터의 유효성을 검사한다.
+  - 예1) CharField의 경우, 길이에 제한이 있는 문자열을 저장한다(길이 제한은 max_length= 인자로 설정)  
+  - 예2) TextField의 경우 문자열 길이 제한을 두지 않으므로 기본적으로 데이터 유효성을 검증하지 않는다.
 
-## migration
+# migration
 
 - 데이터베이스에 모델의 변경 사항을 반영하는 방법
 - 모델의 변경사항과 데이터베이스를 동기화
-- 마이그레이트 실행 : python manage.py sqlmigrate (애플리케이션명) (마이그레이션 이름)
-ex) python manage.py sqlmigrate articles 0001
-  
-## 모델 변경사항 반영하기
 
-- python manage.py makemigrations
+> 마이그레이트 실행 명령어: python manage.py sqlmigrate (애플리케이션명) (마이그레이션 이름)
+> ex) python manage.py sqlmigrate articles 0001
+> 마이그레이션 생성(모델 버전 생성) 명령어: python manage.py makemigrations
+> python manage.py makemigrations
+
+> Note: 마이그레이션 시 주의사항
+> - Django의 settings.py에 등록된 프로그램(모델)만 마이그레이션 대상으로 인식된다.
+> - 모델과 스키마에 이상이 없음에도 마이그레이션이 진행되지 않는다면 settings.py의 INSTALLED_APPS를 확인해 보자.
 
 ## ORM(Object-Relational-Mapping)
 
