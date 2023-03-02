@@ -36,3 +36,36 @@ foo one    4.0    1.0
 - 두 행렬 간 곱셈은 (열 데이터 \* 행 데이터의 합) 이다.
 - 행렬곱을 진행하려면 첫째 행렬의 열 개수와 둘째 행렬의 행 개수가 같아야 한다.
   - (n \* m) 행렬과 (m \* p) 행렬은 첫째 행렬의 열 개수와 둘째 행렬의 행 개수가 같으므로(m) 행렬곱이 가능하다.
+
+# pd.DataFrame 전처리
+
+- df는 pd.DataFrame으로 전환된 데이터프레임
+
+## 상위 n개 표시
+
+- df.head(n)
+
+## 모든 항목 개수 세기
+
+- df\[column].count()
+
+## 특정 항목의 평균 구하기
+
+- df_avg = df.groupby(\[column], as_index=False).mean()
+- 항목별로 그룹을 이루고 싶을 때 groupby(\[column])을 이용해 묶을 수 있다.
+
+## 각 항목의 평균값 표시
+
+```py
+# x에는 x축에 표시할 범주, height에는 y축에 표시할 값 입력
+chart = plt.bar(x=data_avg[column1], height=data_avg[column2])
+plt.show()
+```
+
+## 각 항목의 개수 표시
+
+```py
+# x에는 x축에 표시할 범주, data에는 원본 데이터 표시
+chart = sns.countplot(x=column, data=df)
+plt.show()
+```
