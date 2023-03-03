@@ -110,3 +110,14 @@ df.dropna(subset=["AGE_FLAG_NM", "SEXDSTN_FLAG_NM"], how='any', inplace=True)
 ```py
 df["KDC_NM"] = df["KDC_NM"].fillna(0)
 ```
+
+# 데이터프레임 안의 값을 다른 값으로 대체
+
+## 값 슬라이싱
+
+- df\[column].str.slice(start_idx, end_idx)
+- 데이터 타입이 문자열이 아닌 경우 astype(str)를 이용해 문자열로 전환해 주면 된다.
+
+```py
+df["Date of Publication"].astype(str).str.slice(0, 4)
+```
