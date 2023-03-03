@@ -99,3 +99,14 @@ df.drop(labels=["AREA_NM"], axis=1, inplace=True)
 ```py
 df.dropna(subset=["AGE_FLAG_NM", "SEXDSTN_FLAG_NM"], how='any', inplace=True)
 ```
+
+# 결측치를 임의의 값으로 대체
+
+## df.fillna(new value)
+
+- df의 빈 값을 new value로 대체
+- 일부 행에만 적용하려면 컬럼명을 정한 뒤 저장 사항을 반영해야 함
+
+```py
+df["KDC_NM"] = df["KDC_NM"].fillna(0)
+```
