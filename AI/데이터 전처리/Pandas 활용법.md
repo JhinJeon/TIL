@@ -37,6 +37,17 @@ foo one    4.0    1.0
 - 행렬곱을 진행하려면 첫째 행렬의 열 개수와 둘째 행렬의 행 개수가 같아야 한다.
   - (n \* m) 행렬과 (m \* p) 행렬은 첫째 행렬의 열 개수와 둘째 행렬의 행 개수가 같으므로(m) 행렬곱이 가능하다.
 
+## 파라미터 간 유사도를 구할 때?
+
+- 원본 행렬과 원본 행렬을 전치(transpose)한 행렬을 곱한 값을 유사도로 정한다.
+- transpose를 하려면 데이터프레임.transpose()로 전환할 수 있다.
+  - 또는 데이터프레임.T 를 사용할 수도 있다.
+
+```py
+tp_df = df.transpose()
+tp_df = df.T
+```
+
 # pd.DataFrame 전처리
 
 - df는 pd.DataFrame으로 전환된 데이터프레임
@@ -68,4 +79,23 @@ plt.show()
 # x에는 x축에 표시할 범주, data에는 원본 데이터 표시
 chart = sns.countplot(x=column, data=df)
 plt.show()
+```
+
+## 특정 행(구분) 지우기
+
+- df.drop(labels=[지울 행], axis=(0: 가로, 1:세로), inplace=(True/False))
+- inplace=True시 원본 데이터를 변경하고, inplace=False 시 새로운 데이터프레임 객체를 생성한다.
+
+```py
+df.drop(labels=["AREA_NM"], axis=1, inplace=True)
+```
+
+## 결측치가 들어있는 행/열 제거
+
+- df.dropna(subset=["지울 행"], how=(all/any), inplace=(True/False))
+- how=any 시 subset에 있는 행 중 하나 이상이 결측치가 있을 때 제거하고, all 시 subset의 모든 행이 결측치가 있을 때 제거
+- subset을 설정하지 않으면 df의 모든 행을 대상으로 시행
+
+```py
+df.dropna(subset=["AGE_FLAG_NM", "SEXDSTN_FLAG_NM"], how='any', inplace=True)
 ```
