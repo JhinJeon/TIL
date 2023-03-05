@@ -2,13 +2,14 @@
 
 1. python mysqlclient 설치
 
-- 설치하려면 visual studio가 있어야 한다(별도 설치).
+- 설치하려면 visual studio Build Tools가 있어야 한다(별도 설치).
+  - visual studio 설치 페이지에서 build tools 검색 > 빌드 도구 설치
 
 ```
 pip install mysqlclient
 ```
 
-2. (DB가 없는 경우) DB 생성
+1. (DB가 없는 경우) DB 생성
 
 ```
 mysql> create database django_insta character set utf8mb4 collate utf8mb4_general_ci;
@@ -19,7 +20,7 @@ mysql> show tables;
 Empty set (0.01 sec)
 ```
 
-3. settings.py에 DATABASES={}에 테이블 정보 입력
+1. settings.py에 DATABASES={}에 테이블 정보 입력
 
 ```py
 # my_settings.py
