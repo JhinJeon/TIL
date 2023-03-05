@@ -4,6 +4,7 @@
 
 - 설치하려면 visual studio Build Tools가 있어야 한다(별도 설치).
   - visual studio 설치 페이지에서 build tools 검색 > 빌드 도구 설치
+  - 워크로드 > C++를 사용한 데스크톱 개발 체크
 
 ```
 pip install mysqlclient
