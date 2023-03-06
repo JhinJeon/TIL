@@ -18,6 +18,7 @@ df = pd.DataFrame({"A": ["foo", "foo", "foo", "foo", "foo",
                    "D": [1, 2, 2, 3, 3, 4, 5, 6, 7],
                    "E": [2, 4, 5, 5, 6, 6, 8, 9, 9]})
 
+# aggfunc는 values에 들어가는 값을 어떻게 처리할지 결정하는 파라미터(mean, sum, count 등)
 table = pd.pivot_table(df, values='D', index=['A', 'B'],
                     columns=['C'], aggfunc=np.sum)
 
