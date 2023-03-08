@@ -122,3 +122,14 @@ df["KDC_NM"] = df["KDC_NM"].fillna(0)
 ```py
 df["Date of Publication"].astype(str).str.slice(0, 4)
 ```
+
+# 인덱스 리셋
+
+- 데이터 전처리 시 인덱스 번호까지 삭제/변경되는 경우 인덱싱 기반 데이터 탐색 시 오류가 발생할 수 있다.
+- 이를 해결하려면 인덱스 번호를 다시 배정해 주어야 한다.
+- df.reset_index()
+
+```py
+# 별도의 변수를 배정하지 않으면 원본 데이터프레임이 변경된다.
+test_df = df.reset_index()
+```
