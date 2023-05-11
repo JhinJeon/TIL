@@ -218,7 +218,32 @@ int __io_putchar(int ch)
   - 예) 1000Hz의 신호가 들어왔을 때 1/10 배율로 설정(100Hz로 전환)하여 집계 단위에 맞춰 주기 
 - 내가 사용하는 타이머가 어떤 클럭이 들어오는 지 알아야 한다.
 
+# PWM(Pulse Width Modulation)
 
+- 임의의 정해진 출력 파형을 유도하기 위해 펄스폭 또는 주파수(또는 둘 다) 변조시키는 펄스 제어 방식
+- 동일한 클럭에서 펄스 폭(width)의 차이를 자유자재로 제어할 수 있다.
+- 디지털 신호를 아날로그 신호처럼 만들 수 있다(CPU 팬 속도제어, DC모터 회전속도 제어 등)
+  - 일정 시간 단위 동안 흐르는 전기 에너지의 평균을 계산하면(전압 등) 아날로그 신호처럼 보인다.
+
+# STM 6축센서 사용
+
+- 가속도 3축, 자이로스코프(기울어진 정도) 3축 측정
+- ST MCU와 ST 센서를 사용하면 전용 드라이버를 설치해서 사용할 수 있다.
+  - 설치 방법 : ST IDE에서 software packs > software pack components
+
+# FreeRTOS
+
+## FreeRTOS 개요
+
+- Free Real-Time OS(무료 실시간 OS)의 약자이다.
+- RTOS(Real-Time OS)는 멀티 프로세스(MP)를 지원하지 않는 환경에서 정확한 시간에 정확한 동작을 할 수 있는 기능을 지원해 주는 OS이다.
+- 자동차 전장용품(ECU 등) 등 신뢰성과 반응성이 중요한 분야에 사용된다.
+
+# CMSIS
+
+- Cortex-Microcontroller Software Interface Standard의 약자
+- SW의 호환성과 이식성을 높이기 위해 ARM이 각 협력업체와 협업하여 표준 제정 
+- CMSIS의 FreeRTOS는 ST에서만 설정 가능하다(다른 회사의 IDE는 별도의 라이브러리 필요)
 
 <br>
 <hr>
