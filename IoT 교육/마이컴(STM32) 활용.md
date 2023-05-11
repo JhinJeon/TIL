@@ -168,3 +168,72 @@
 # UART 통신
 
 - HAL_OK, ERROR(오류 처리), BUSY(대기), TIMEOUT 설정
+
+## NVIC 설정
+
+- ST IOC > System Core > NVIC > USART global interrupt 적용 체크
+- 이후 main() 함수의 while() 안에 코드 작성
+
+```c
+    // UART 통신 수신 함수)
+	  HAL_UART_Receive_IT(&huart1, &a, 1);
+```
+
+## 출력 설정
+
+- STM32에서는 기본적인 표준 출력이 없다.
+- printf, UART 등 출력 방식을 설정해주어야 한다.
+- 출력 설정 변경 : syscall.c 파일에서 _write() 함수의 내용을 변경하면 된다.
+
+```c
+// gcc 라이브러리의 옵션 값 처리하는 함수
+// syscalls.c
+extern int __io_putchar(int ch) __attribute__((weak));
+extern int __io_getchar(void) __attribute__((weak));
+```
+- 이후 main.c에 __io_putchar() 함수 추가
+
+```c
+// main. c
+int __io_putchar(int ch)
+{
+	HAL_UART_Transmit(&huart1, (uint8_t*)&ch, 1, 10);
+}
+```
+
+# Timer
+
+- 클럭의 시간을 측정하는 장치(클럭을 세는 장치)
+- 클럭의 출력(1초당 몇 번 똑딱이는지)을 알면 시간을 유추할 수 있다.
+- Timer를 사용해야 하는 경우가 많다.
+- 정확한 시간 단위를 계산하려면 타이머가 셀 수 있는 최소 클럭 단위를 맞춰 주어야 한다.(예: 1KHz인 경우 1/1000밀리초 단위까지 측정 가능)
+
+## 타이머 구조 특징
+
+- STM의 모든 타이머는 auto-reload register(몇 개까지 셀 것인지 설정)와 CNT counter(클럭 집계 역할)를 공통적으로 갖고 있다.
+- auto-reload register와 CNT counter를 바탕으로 타이머를 세는 구조이다.(그 밖의 구조는 부가적인 기능)
+  - auto-reload register에 설정한 값을 충족하면 인터럽트가 발생한다(집계를 종료하고 다른 동작 실행).
+- 기본적인 기능과 구조는 Basic Timer에서 시작한다.(6번, 7번)
+- prescaler : 클럭 단위를 재조정해 주는 장치
+  - 예) 1000Hz의 신호가 들어왔을 때 1/10 배율로 설정(100Hz로 전환)하여 집계 단위에 맞춰 주기 
+- 내가 사용하는 타이머가 어떤 클럭이 들어오는 지 알아야 한다.
+
+
+
+<br>
+<hr>
+<hr>
+<hr>
+<br>
+
+# LoRa
+
+- 비면허대역 주파수를 이용한 통신규격
+  - 면허대역 통신의 경우 별도의 허가를 받아야 한다(LTE 등).
+
+# DMA(메모리 직접 접근)
+
+- 메모리에서 메모리로 직접 접근하여 데이터 통신, 복사 등의 기능 수행
+  - 메모리 주소를 이용해 구현
+- DMA를 사용하면 데이터 전송 주체는 UART가 아니라 DMA가 된다.
+- 코어 제조사(ST 등)가 SoC 내에 DMA라는 하드웨어 디바이스를 탑재한 것
