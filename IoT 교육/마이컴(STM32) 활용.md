@@ -239,12 +239,6 @@ int __io_putchar(int ch)
 - RTOS(Real-Time OS)는 멀티 프로세스(MP)를 지원하지 않는 환경에서 정확한 시간에 정확한 동작을 할 수 있는 기능을 지원해 주는 OS이다.
 - 자동차 전장용품(ECU 등) 등 신뢰성과 반응성이 중요한 분야에 사용된다.
 
-# CMSIS
-
-- Cortex-Microcontroller Software Interface Standard의 약자
-- SW의 호환성과 이식성을 높이기 위해 ARM이 각 협력업체와 협업하여 표준 제정 
-- CMSIS의 FreeRTOS는 ST에서만 설정 가능하다(다른 회사의 IDE는 별도의 라이브러리 필요)
-
 ## FreeRTOS 사용 시 유의사항
 
 - 제한된 자원이 부여된 환경에서 구동해야 하므로, 메모리 관리를 철저히 해야 한다.
@@ -258,6 +252,12 @@ int __io_putchar(int ch)
   - 파라미터로 task에 대한 정보 제공
 - osKernelStart 함수가 FreeRTOS를 구성하는 함수
 - CMSIS를 구성하는 알고리즘을 소스코드 형태로 복사해준 것(커스텀 할 필요가 있지 않다면 굳이 수정할 필요는 없다.)
+
+# CMSIS
+
+- Cortex-Microcontroller Software Interface Standard의 약자
+- SW의 호환성과 이식성을 높이기 위해 ARM이 각 협력업체와 협업하여 표준 제정 
+- CMSIS의 FreeRTOS는 ST에서만 설정 가능하다(다른 회사의 IDE는 별도의 라이브러리 필요)
 
 # V_Task task Scheduler
 
@@ -287,3 +287,9 @@ int __io_putchar(int ch)
   - 메모리 주소를 이용해 구현
 - DMA를 사용하면 데이터 전송 주체는 UART가 아니라 DMA가 된다.
 - 코어 제조사(ST 등)가 SoC 내에 DMA라는 하드웨어 디바이스를 탑재한 것
+
+# 스케쥴링(Scheduling)
+
+- 프로그램 로직이 내가 원하는 대로 작동하게 구현하는 것
+- OS의 스케쥴링은 프로그램들이 내가 원하는 순서나 방식대로 동작하게 만드는 과정이다.
+- OS가 있어야 스케쥴링을 할 수 있는 것은 아니다!
