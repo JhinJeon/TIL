@@ -174,3 +174,41 @@ int main(int argc, char* argv[])
     return rc;
 }
 ```
+
+# Paho MQTT 구현
+
+1. MQTTClient_create
+
+- MQTT 클라이언트 인스턴스를 생성한다.
+- 파라미터는 [클라이언트 핸들, 브로커(서버) URI, 클라이언트 ID, persistence type, persistence context] 순으로 입력한다.
+- 정수형 값을 반환한다.(성공 시 MQTTCLIENT_SUCCESS, 실패 시 에러 코드)
+
+2. MQTTClient_connect
+
+- MQTT 브로커와 연결한다.
+- 파라미터는 [클라이언트 인스턴스 핸들, MQTTClient_connectOptions 구조체의 메모리 주소] 순으로 입력한다.
+- 반환 값은 위와 동일하다.
+
+3. MQTTClient_publish
+
+- 메시지를 주제(topic)에 공개(publish)한다.
+- 파라미터는 [클라이언트 인스턴스 핸들, topic 이름, 메시지 payload 길이, QoS(0/1/2), Retained flag(0/1), delivery 토큰 메모리 주소] 순으로 입력한다.
+- 반환 값은 위와 동일하다.
+
+4. MQTTClient_subscribe
+
+- publish된 topic을 구독(subscribe)한다.
+- 파라미터는 [클라이언트 인스턴스 핸들, 구독하려는 topic filter, QoS(0/1/2)] 순으로 입력한다.
+- 반환 값은 위와 같다.
+
+5. MQTTClient_setCallbacks
+
+- 메시지 접수(reception), 연결 끊김, 메시지 도착, 메시지 전달 확인 등의 과정을 수행할 때 콜백 함수를 설정할 수 있다.
+- 파라미터는 [클라이언트 인스턴스 핸들, User-defined context, 연결 끊김 콜백 함수 메모리 주소, 메시지 도착 시 콜백 함수 메모리 주소, 메시지 전송 완료 콜백 함수 메모리 주소] 순으로 입력한다.
+- 함수 자체는 아무런 값을 반환하지 않는다.
+
+6. MQTTClient_disconnect
+
+- MQTT 브로커와의 연결을 끊는다.
+- 파라미터는 [클라이언트 인스턴스 핸들, 타임아웃] 순으로 입력한다.
+- 정수형 값을 반환한다(성공 시 MQTTCLIENT_SUCCESS, 실패 시 에러 코드)
