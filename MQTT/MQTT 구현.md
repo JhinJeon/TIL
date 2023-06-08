@@ -224,7 +224,7 @@ int main(int argc, char* argv[])
 #define ADDRESS     "tcp://mqtt.example.com:1883"
 #define CLIENTID    "ExampleClient"
 #define TOPIC       "my/topic"
-#define QOS         1
+#define QOS         1   // 0 = 전송 검증 안 함, 1 = 기본 전송(수신확인이 될 때까지 전송 반복), 2 = 정확한 전송(핸드쉐이킹)
 #define TIMEOUT     10000L
 
 volatile MQTTClient_deliveryToken deliveredtoken;
@@ -277,6 +277,7 @@ int main(int argc, char* argv[])
 
     printf("Subscribed to topic: %s\n", TOPIC);
 
+    // MQTTClient_message_initializer 구조체 포맷의 pubmsg 변수(인스턴스) 생성
     MQTTClient_message pubmsg = MQTTClient_message_initializer;
     pubmsg.payload = "Hello, MQTT!";
     pubmsg.payloadlen = (int)strlen(pubmsg.payload);
