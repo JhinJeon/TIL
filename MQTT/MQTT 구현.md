@@ -192,13 +192,13 @@ int main(int argc, char* argv[])
 3. MQTTClient_publish
 
 - 메시지를 주제(topic)에 공개(publish)한다.
-- 파라미터는 [클라이언트 인스턴스 핸들, topic 이름, 메시지 payload 길이, QoS(0/1/2), Retained flag(0/1), delivery 토큰 메모리 주소] 순으로 입력한다.
+- 파라미터는 **[클라이언트 인스턴스 핸들, topic 이름(파일 경로로 표시), 메시지 payload 길이, QoS(0/1/2), Retained flag(0/1), delivery 토큰 메모리 주소]** 순으로 입력한다.
 - 반환 값은 위와 동일하다.
 
 4. MQTTClient_subscribe
 
 - publish된 topic을 구독(subscribe)한다.
-- 파라미터는 [클라이언트 인스턴스 핸들, 구독하려는 topic filter, QoS(0/1/2)] 순으로 입력한다.
+- 파라미터는 **[클라이언트 인스턴스 핸들, 구독하려는 topic filter, QoS(0/1/2)]** 순으로 입력한다.
 - 반환 값은 위와 같다.
 
 5. MQTTClient_setCallbacks
