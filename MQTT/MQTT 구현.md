@@ -212,3 +212,90 @@ int main(int argc, char* argv[])
 - MQTT 브로커와의 연결을 끊는다.
 - 파라미터는 [클라이언트 인스턴스 핸들, 타임아웃] 순으로 입력한다.
 - 정수형 값을 반환한다(성공 시 MQTTCLIENT_SUCCESS, 실패 시 에러 코드)
+
+# Paho MQTT 샘플 코드 추가(C)
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "MQTTClient.h"
+
+#define ADDRESS     "tcp://mqtt.example.com:1883"
+#define CLIENTID    "ExampleClient"
+#define TOPIC       "my/topic"
+#define QOS         1
+#define TIMEOUT     10000L
+
+volatile MQTTClient_deliveryToken deliveredtoken;
+
+// Callback function for connection lost
+void connectionLost(void *context, char *cause)
+{
+    printf("\nConnection lost\n");
+    printf("Cause: %s\n", cause);
+}
+
+// Callback function for message arrival
+int messageArrived(void *context, char *topicName, int topicLen, MQTTClient_message *message)
+{
+    printf("\nReceived message on topic: %s\n", topicName);
+    printf("Message: %.*s\n", message->payloadlen, (char *)message->payload);
+
+    MQTTClient_freeMessage(&message);
+    MQTTClient_free(topicName);
+    return 1;
+}
+
+// Callback function for message delivery completion
+void deliveryComplete(void *context, MQTTClient_deliveryToken token)
+{
+    printf("Message delivery completed\n");
+    deliveredtoken = token;
+}
+
+int main(int argc, char* argv[])
+{
+    MQTTClient client;
+    MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;
+    int rc;
+
+    MQTTClient_create(&client, ADDRESS, CLIENTID, MQTTCLIENT_PERSISTENCE_NONE, NULL);
+    conn_opts.keepAliveInterval = 20;
+    conn_opts.cleansession = 1;
+
+    // 콜백 함수 등록
+    MQTTClient_setCallbacks(client, NULL, connectionLost, messageArrived, deliveryComplete);
+
+    if ((rc = MQTTClient_connect(client, &conn_opts)) != MQTTCLIENT_SUCCESS) {
+        printf("Failed to connect, return code: %d\n", rc);
+        exit(EXIT_FAILURE);
+    }
+
+    // TOPIC 구독
+    MQTTClient_subscribe(client, TOPIC, QOS);
+
+    printf("Subscribed to topic: %s\n", TOPIC);
+
+    MQTTClient_message pubmsg = MQTTClient_message_initializer;
+    pubmsg.payload = "Hello, MQTT!";
+    pubmsg.payloadlen = (int)strlen(pubmsg.payload);
+    pubmsg.qos = QOS;
+    pubmsg.retained = 0;
+
+    MQTTClient_deliveryToken token;
+    MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
+    printf("Publishing message: %s\n", pubmsg.payload);
+
+    rc = MQTTClient_waitForCompletion(client, token, TIMEOUT);
+    printf("Message delivery result: %d\n", rc);
+
+    printf("Press Enter to exit...\n");
+    getchar();
+
+    MQTTClient_disconnect(client, TIMEOUT);
+    MQTTClient_destroy(&client);
+    return 0;
+}
+
+```
