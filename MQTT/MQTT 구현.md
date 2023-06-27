@@ -298,5 +298,11 @@ int main(int argc, char* argv[])
     MQTTClient_destroy(&client);
     return 0;
 }
-
 ```
+
+# 트러블슈팅(문제가 발생했을 때)
+
+1. connect 단계에서 -15 오류가 뜨는 경우
+
+- conn_opts.username에 문자열 변수를 입력하는 경우, 배열의 크기(size)를 여유롭게 해야 한다.(size - strlen 시 2 이상 남도록)
+    - \0 포함 2자리 이상 남겨야 한다.
